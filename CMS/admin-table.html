@@ -208,13 +208,14 @@
     function add(){
       window.location.href = './admin-user.html'
     }
-    showtable();
+  
     function showtable(){
         $.ajax({
         type:"post",
         url:"http://localhost:12345/select",
         success:function(res){
-          var arr = JSON.parse(res);
+          console.log(res)
+      /*    var arr = JSON.parse(res);
           var list = arr.results;
           var html = list.map(function(item){
             return `<tr>
@@ -235,10 +236,11 @@
                       </td>
                     </tr> `
           }).join('')
-          $('#list').html(html);
+          $('#list').html(html);*/
         }
       })
     }
+      showtable();
     //删除数据
     $('#list').on('click','button',function(){
         if($(this).hasClass('delbtn')){

@@ -1,7 +1,6 @@
 
 /*
 last-update:cjm
-
 update:cjm
 
 */
@@ -9,10 +8,11 @@ update:cjm
 
 
 
+
 //服务器,设置静态文件夹
 var express = require('express');
 var mysql = require('mysql');
-
+var bodyParse = require('body-parser')
 //初始化express
 var app = express();
 
@@ -22,8 +22,9 @@ app.listen(12345);
 
 //引入自定义模块
 
-var xinzeng = require('./CMS/api/sql_caozuo.js');
-	 xinzeng(express,mysql);
+var handle = require('./CMS/api/sql_caozuo.js');
+	handle(app,mysql,bodyParse);
+
 
 
 
