@@ -8,8 +8,6 @@ update:cjm
 
 
 
-
-
 //服务器,设置静态文件夹
 var express = require('express');
 var mysql = require('mysql');
