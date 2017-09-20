@@ -14,6 +14,7 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="./table.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -98,7 +99,7 @@
         <div class="am-u-sm-12 am-u-md-6">
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
-              <button onclick="add()" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+              <button id="add" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
@@ -133,7 +134,7 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
             <tr>
-              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">姓名</th><th class="table-type">邮箱</th><th class="table-author am-hide-sm-only">电话</th><th class="table-date am-hide-sm-only">简介</th><th class="table-set">操作</th>
+              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">商品名</th><th class="table-type">种类</th><th class="table-author am-hide-sm-only">价格</th><th class="table-date am-hide-sm-only">简介</th><th class="table-set">操作</th>
             </tr>
             </thead>
             <tbody id="list">
@@ -202,66 +203,8 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="./js/jquery.js"></script>
 <!--<![endif]-->
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
-<script type="text/javascript">
-    function add(){
-      window.location.href = './admin-user.html'
-    }
-  
-    function showtable(){
-        $.ajax({
-        type:"post",
-        url:"http://localhost:12345/select",
-        success:function(res){
-          console.log(res)
-      /*    var arr = JSON.parse(res);
-          var list = arr.results;
-          var html = list.map(function(item){
-            return `<tr>
-                      <td><input type="checkbox" /></td>
-                      <td>${item.id}</td>
-                      <td><a href="#">${item.name}</a></td>
-                      <td>${item.email}</td>
-                      <td class="am-hide-sm-only">${item.tel}</td>
-                      <td class="am-hide-sm-only">${item.introduce}</td>
-                      <td>
-                        <div class="am-btn-toolbar" class="allbtn">
-                          <div class="am-btn-group am-btn-group-xs">
-                            <button data-id=${item.id} class="editbtn" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                            <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
-                            <button data-id=${item.id} class="delbtn" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                          </div>
-                        </div>
-                      </td>
-                    </tr> `
-          }).join('')
-          $('#list').html(html);*/
-        }
-      })
-    }
-      showtable();
-    //删除数据
-    $('#list').on('click','button',function(){
-        if($(this).hasClass('delbtn')){
-          var id = $(this).attr('data-id');
-          console.log(id)
-          var ele = $(this)
-          $.ajax({
-            type:"post",
-            url:"http://localhost:12345/delete",
-            data:{
-              id:id
-            },
-            success:function(res){
-                ele.parent().parent().parent().parent().remove();
-            }
-          })
-        }else if($(this).hasClass('editbtn')){
-            var id = $(this).attr('data-id');
-            window.location.href = './admin-user.html?'+id;
-        }
-    })
-</script>
+<!-- <script src="assets/js/amazeui.min.js"></script> -->
+<!-- <script src="assets/js/app.js"></script> -->
+
 </body>
 </html>

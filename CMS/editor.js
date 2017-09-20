@@ -1,5 +1,98 @@
 //富文本编辑器脚本
 document.addEventListener('DOMContentLoaded',function(){
+
+
+       $goodname = $('#user-name')
+       $price = $('#user-email')
+       $discount = $('#user-phone')
+       $imgurl = $('#user-QQ')
+       $imgarr = $('#user-weibo')
+       $kind = $('#category')
+       $qty = $('#user-qty')
+       $intro = $('#user-intro')
+    var id = window.location.search.slice(1);
+    console.log(id)
+    if(id.length>0){
+      $.ajax({
+        type:"post",
+        url:"http://localhost:12345/change",
+        data:{
+          id:id
+        },
+        success:function(res){
+            var arr=JSON.parse(res);
+            arr=arr.results;
+            arr=arr[0]
+            $goodname.val(arr.goodname)
+            $price.val(arr.price)
+            $discount.val(arr.discount)
+            $imgurl.val(arr.imgurl)
+            $imgarr.val(arr.imgarr)
+            $kind.val(arr.kind)
+            $qty.val(arr.qty)
+            $intro.val(arr.introduce)
+        }
+      })
+    }
+    $('#c_save').click(function(){
+		      var goodname = $goodname.val();
+		      var price = $price.val();
+		      var discount = $discount.val();
+		      var imgurl = $imgurl.val();
+		      var imgarr = $imgarr.val();
+		      var kind = $kind.val();
+		      var qty = $qty.val()
+		      var intro = $intro.val();
+		          console.log(goodname,price)
+		          console.log(id.length)
+		      if(id.length>0){
+		          $.ajax({
+		          type:"post",
+		          url:"http://localhost:12345/update",
+		          data:{
+		            id:id,
+		            goodname:goodname,
+		            price:price,
+		            discount:discount,
+		            imgurl:imgurl,
+		            imgarr:imgarr,
+		            kind:kind,
+		            qty:qty,
+		            intro:intro
+		          },
+		          success:function(res){
+		            window.location.href = './admin-table.html';
+		          }
+		        })
+		      }else{
+		        $.ajax({
+		          type:"post",
+		          url:"http://localhost:12345/insert",
+		          data:{
+		            goodname:goodname,
+		            price:price,
+		            discount:discount,
+		            imgurl:imgurl,
+		            imgarr:imgarr,
+		            kind:kind,
+		            qty:qty,
+		            intro:intro
+		          },
+		          success:function(res){
+		           	 window.location.href = './admin-table.html';
+		          }
+		        })
+		      }
+    })
+    function save(){
+
+    }
+
+
+
+
+
+
 	//实例化编辑器
 	var E = window.wangEditor
 	var editor = new E('#editor')//富文本编辑器实例
