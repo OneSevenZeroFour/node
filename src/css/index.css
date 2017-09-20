@@ -2,9 +2,9 @@
 
 .container { min-width: 1200px; }
 
-.banner { height: 400px; width: 765px; margin-left: 262px; }
+.banner { height: 400px; width: 765px; margin-left: 262px; float: left; }
 
-.navimg { width: 190px; height: 390px; position: absolute; top: 164px; right: 25px; }
+.navimg { width: 190px; height: 390px; float: left; margin-left: 5px; }
 
 .navimg img { z-index: 10000; }
 
