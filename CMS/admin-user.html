@@ -14,6 +14,14 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
+  
+  
+  <!--富文本编辑区的样式和脚本-->
+  <link rel="stylesheet" href="admin-user.css" />
+  <script type="text/javascript" src="wangEditor-3.0.9/release/wangEditor.min.js"></script>
+  <script type="text/javascript" src="editor.js"></script>
+  <!--富文本编辑区的样式和脚本结束-->
+  
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -89,7 +97,7 @@
   <div class="admin-content">
     <div class="admin-content-body">
       <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品信息</strong> / <small>Goods information</small></div>
       </div>
 
       <hr/>
@@ -177,10 +185,13 @@
             </div>
 
             <div class="am-form-group">
-              <label for="user-intro" class="am-u-sm-3 am-form-label">富文本编辑区</label>
+              <label for="user-intro" class="am-u-sm-3 am-form-label">商品简介</label>
               <div class="am-u-sm-9">
-                <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
-                <small>富文本编辑区</small>
+								<!--    富文本编辑区域             -->
+                <textarea class="" rows="5" id="user-intro" placeholder="简介"></textarea>
+                <small id="ed">进入高级模式</small>
+                <div id="editor"></div>
+                <!--    富文本编辑区域结束             -->
               </div>
             </div>
 
@@ -193,7 +204,23 @@
         </div>
       </div>
     </div>
+    
+    
 
+		
+		
+		
+		
+		
+
+
+
+	
+	
+	
+	
+	
+	
     <footer class="admin-content-footer">
       <hr>
       <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
@@ -223,7 +250,7 @@
 <script src="assets/js/amazeui.min.js"></script>
 
 <script src="assets/js/app.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
        $name = $('#user-name')
        $email = $('#user-email')
        $tel = $('#user-phone')
@@ -294,6 +321,8 @@
         })
       }
     }
-</script>
+</script>-->
+
+
 </body>
 </html>

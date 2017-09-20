@@ -1,0 +1,16 @@
+.am-u-sm-9{position:relative}
+#editor{
+	position:absolute;
+	bottom:25px;
+	left: 18px;
+	background-color: #fff;
+	z-index: 1;
+	display: none;
+}
+
+#ed{
+	cursor: pointer;
+}
+#ed:hover{
+	color:#007FFF;
+}
