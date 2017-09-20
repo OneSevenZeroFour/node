@@ -150,7 +150,7 @@
             <div class="am-form-group">
               <label for="user-email" class="am-u-sm-3 am-form-label">价格</label>
               <div class="am-u-sm-9">
-                <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
+                <input type="text" id="user-email" placeholder="价格" / Email">
                 <small>请输入商品价格</small>
               </div>
             </div>
@@ -158,14 +158,14 @@
             <div class="am-form-group">
               <label for="user-phone" class="am-u-sm-3 am-form-label">折扣</label>
               <div class="am-u-sm-9">
-                <input type="tel" id="user-phone" placeholder="请输入折扣">
+                <input type="text" id="user-phone" placeholder="请输入折扣">
               </div>
             </div>
 
             <div class="am-form-group">
               <label for="user-QQ" class="am-u-sm-3 am-form-label">图片</label>
               <div class="am-u-sm-9">
-                <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入图片链接">
+                <input type="text"  id="user-QQ" placeholder="输入图片链接">
               </div>
             </div>
 
@@ -224,11 +224,11 @@
 
 <script src="assets/js/app.js"></script>
 <script type="text/javascript">
-       $name = $('#user-name')
-       $email = $('#user-email')
-       $tel = $('#user-phone')
-       $qq = $('#user-QQ')
-       $weibo = $('#user-weibo')
+       $goodname = $('#user-name')
+       $price = $('#user-email')
+       $discount = $('#user-phone')
+       $imgurl = $('#user-QQ')
+       $imgother = $('#user-weibo')
        $intro = $('#user-intro')
     var id = window.location.search.slice(1);
     console.log(id)
@@ -243,33 +243,35 @@
             var arr=JSON.parse(res);
             arr=arr.results;
             arr=arr[0]
-            $name.val(arr.name)
-            $email.val(arr.email)
-            $tel.val(arr.tel)
-            $qq.val(arr.qq)
-            $weibo.val(arr.weibo)
+            $goodname.val(arr.goodname)
+            $price.val(arr.price)
+            $discount.val(arr.discount)
+            $imgurl.val(arr.imgurl)
+            $imgother.val(arr.imgother)
             $intro.val(arr.introduce)
         }
       })
     }
     function save(){
-      var name = $name.val();
-      var email = $email.val();
-      var tel = $tel.val();
-      var qq = $qq.val();
-      var weibo = $weibo.val();
+      var goodname = $goodname.val();
+      var price = $price.val();
+      var discount = $discount.val();
+      var imgurl = $imgurl.val();
+      var imgother = $imgother.val();
       var intro = $intro.val();
+          console.log(goodname,price)
+          console.log(id.length)
       if(id.length>0){
           $.ajax({
           type:"post",
           url:"http://localhost:12345/update",
           data:{
             id:id,
-            name:name,
-            email:email,
-            tel:tel,
-            qq:qq,
-            weibo:weibo,
+            goodname:goodname,
+            price:price,
+            discount:discount,
+            imgurl:imgurl,
+            imgother:imgother,
             intro:intro
           },
           success:function(res){
@@ -281,15 +283,15 @@
           type:"post",
           url:"http://localhost:12345/insert",
           data:{
-            name:name,
-            email:email,
-            tel:tel,
-            qq:qq,
-            weibo:weibo,
+            goodname:goodname,
+            price:price,
+            discount:discount,
+            imgurl:imgurl,
+            imgother:imgother,
             intro:intro
           },
           success:function(res){
-            window.location.href = './admin-table.html';
+           // window.location.href = './admin-table.html';
           }
         })
       }
