@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>聊天页面</title>
+    <style>
+        a{text-decoration:none;}
+        ul,li{list-style:none;}
+        .header{width:700px;margin:0 auto;}
+        div{display:block;}
+        #header_logo {width: 260px;float:left;height:65px;}
+        #header_logo>img{width:262px;height:67px;}
+        .header_right{float:right;width:400px;height:65px;text-align:right;}
+        #right_close{height:34px;line-height:34px;padding-right:3px;}
+        #right_close>a{color:#fff;float:right;width:80px;height:25px;line-height:25px;display:block;margin-top:3px;text-decoration:none;border:1px solid #0059AE;text-align: center;border-radius: 4px;background-color:#0059AE;font-size:14px;}
+        #right_close>a:hover{background-color: #f00;border:1px solid #f00;}
+        #right_btns{height:33px;}
+        #right_btns>ul {float:right;margin:0px;list-style-type:none;}
+        #right_btns>ul>li{float: left;width:70px;line-height:33px;text-align:center;border:1px solid #0059AE;background-color:#5ea7dc;}
+        #right_btns>ul>li:hover{background-color:#0059AE;}
+        #right_btns>ul>li:first-child{background-color:#0059AE;}
+        #right_btns>ul>li>a{color:#fff;font-size:14px;}
+        .blueline {width:100%;height:11px;background-color:#0059AE;float:left;overflow:hidden;}
+        .main{margin:0 auto;width:700px;}
+        .main_left {width:508px;margin-top:5px;margin-left:5px;margin-right:5px;float:left;display:inline;}
+        #kefu_says{border:1px solid #5ea7dc;height:280px;width:506px;float: left;background:#ffffff;margin-bottom: 0px;overflow:auto;}
+        #area_toobar{width: 506px;float: left;height: 23px;line-height: 30px;border-left: 1px solid #5ea7dc;border-right: 1px solid #5ea7dc;background-color:#0059AE;}
+        #me_says{background: #ffffff;width: 506px;float: left;height: 105px;line-height: 30px;border: 1px solid #5ea7dc;}
+        #txtsays{float: left;border-width: 0px;margin-top: 3px;margin-left: 3px;width:70%;height: 95px;overflow: auto;font-size: 12px;outline: none;resize: none;}
+        .main_right{float:left;width:175px;height:410px;background:#ffffff;border:1px solid #5ea7dc;margin-top:5px;}
+        .listtitle {height:25px;line-height: 25px;text-align:center;width:100%;background-color:#cdecfe;}
+        .main_right>ul{padding-left: 0;display:none;}
+        .main_right>ul>li>a{position:relative;}
+        .main_right>ul>li>a>img{position:absolute;top:11px;left:8px;}
+        .main_right>ul>li{list-style-type:none;text-align:center;margin-top:1px;margin-bottom:1px;background-color:#cdecfe;padding-top:5px;}
+        .main_right>ul>li>a{color:#10508f;padding-top:10px;padding-bottom:10px;display:block;width:173px;text-decoration:none;text-align:center;}
+        #main_btn{margin:40px;}
+        .main_left li{float:left;clear:both;margin:10px 0;padding:5px;line-height:2;border-radius:5px;background-color:#efefef;}
+        .main_left li.active{float:right;background-color:#58bc58;color:#fff;}
+        #select{margin:10px 20px 10px 50px;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div id="header_logo">
+            <img src="../img/kefu.png" height="67" width="262"/>
+        </div>
+        <div id="header_right">
+            <div id="right_close">
+                <a href="http://localhost:2000">结束对话</a>
+            </div>
+            <div id="right_btns">
+                <ul>
+                    <li><a href="#"><span>在线咨询</span></a></li>
+                    <li><a href="#"><span>留言</span></a></li>
+                    <li><a href="#"><span>投诉</span></a></li>
+                    <li><a href="#"><span>建议</span></a></li>
+                    <li><a href="#"><span>评价</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="blueline"></div>
+        
+    </div>
+    <div class="main">
+            <div class="main_left">
+                <div id="kefu_says"></div>
+                <div id="area_toobar"></div>
+                <div id="me_says">
+                <textarea id="txtsays"></textarea>
+                <button id="main_btn">发送</button>
+                </div>
+            </div>
+            <div class="main_right">
+                <div class="listtitle">请选择在线客服</div>
+                <button onclick = "addUser()" id="select">选择客服</button>
+                <ul>
+                    <li class="online">
+                        <a href="">
+                            <img src="../img/touxiang.png"/>在线订购 在线
+                        </a>
+                    </li>
+                    <li class="online"><a href=""><img src="../img/touxiang.png"/>产品咨询 在线</a></li>
+                    <li class="online"><a href=""><img src="../img/touxiang.png"/>订单查询 在线</a></li>
+                    <li class="online"><a href=""><img src="../img/touxiang.png"/>汇款通知 在线</a></li>
+                </ul>
+            
+            </div>
+    </div>
+    <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded',function(){
+            var msglist = document.getElementsByClassName('main_left')[0];
+                // console.log(msglist,8888)
+            var list = document.getElementById('kefu_says');
+            var msg = document.getElementsByTagName('textarea')[0];
+            var btn = document.getElementById('main_btn');
+            var select = document.getElementById('select');
+            var ul = document.getElementsByTagName('ul')[1];
+            // console.log(ul)
+                //创建QA
+            var arr_q = ['你好','在吗','亲，在吗']
+            var arr_a = ['您好请问有什么需要帮助的吗？','您有什么问题我可以帮助您','在的，有什么可以帮助你吗？']
+            //发送消息
+            // 给button绑定点击事件
+            btn.onclick = function(){
+                // 获取输入的内容
+                var _msg = msg.value;
+                 sendMsg(_msg);
+            }
+            select.onclick = function(){
+                ul.style.display='block';
+            }
+
+            //ctrl+回车
+            msg.onkeyup = function(e){
+                // 兼容event对象
+                e = e || window.event;
+                // 兼容keyCode
+                var keyCode = e.keyCode || e.which;
+                if(keyCode === 13 && e.ctrlKey){
+                    var _msg = msg.value;
+                    sendMsg(_msg);
+                }
+            }
+            function sendMsg(_msg){
+                // 创建li
+                var li = document.createElement('li');
+                li.innerHTML = _msg;
+                li.className = 'active';
+                // 把消息写入ul
+                list.appendChild(li);
+                // 清空并自动获得焦点
+                msg.value = '';
+                msg.focus();
+                //自动回复
+                var idx = arr_q.indexOf(_msg);
+                var aLi = document.createElement('li');
+                if(idx>=0){
+                    aLi.innerHTML = arr_a[idx];
+                }else{
+                    aLi.innerHTML = arr_a[0];
+                }
+                //3s后执行一次函数
+                    setTimeout(function(){
+                        list.appendChild(aLi);
+                    },3000);
+            }
+            //跟后端连接
+            var name = prompt("用户名", "laoxie");
+            // console.log(name)
+            var socket = io("http://localhost:2000");
+            console.log(name,999,99773)
+            function addUser(){
+                socket.emit('adduser', {
+                    name,
+                });
+            }
+            // console.log(document.querySelector("#txtsays").value,999)
+            // console.log(document.querySelector("#kefu_says").value,7999)
+            function send() {
+                //发送请求
+                socket.emit('chat', {
+                    name,
+                    message: document.querySelector("#txtsays").value,
+                    toId:document.querySelector("#kefu_says").value
+                });
+            }
+            socket.on("getMessage", function(data) {
+                console.log(data)
+                document.querySelector("#kefu_says").innerHTML += (data.message + "<br>")
+            })
+            socket.on("showuserlist", function(data) {
+                console.log(data)
+                var html = data.map(function(item){
+                    return `
+                    <option value="${item.id}">${item.name}</option>
+                    `
+                }).join("");
+                document.querySelector("#kefu_says").innerHTML = html;
+            })
+        });
+        </script>
+        <script src="../js/socket.js"></script>
+        <script src="../js/say.js"></script>
+</body>
+</html>
