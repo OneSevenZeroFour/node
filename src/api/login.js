@@ -16,7 +16,7 @@ function login(app, connection) {
 		//密码转md5
 		var password = cryptPwd(password);
 		
-		console.log(username,password)
+//		console.log(username,password)
 		//sql语句
 		var sql = `select * from user where username="${username}" and password="${password}"`;
 

@@ -35,7 +35,7 @@ function list(app, connection) {
     	//查询商品总数
     	var total=0
     	connection.query(sql2, function(err, r, fie) {
-			console.log(r)//得到总数
+//			console.log(r)//得到总数
 			total = r.length;
 			//查询数据库
 			connection.query(sql, function(error, results, fields) {
