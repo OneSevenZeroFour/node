@@ -20,17 +20,19 @@ document.addEventListener('DOMContentLoaded',function(){
           id:id
         },
         success:function(res){
-            var arr=JSON.parse(res);
-            arr=arr.results;
-            arr=arr[0]
-            $goodname.val(arr.goodname)
-            $price.val(arr.price)
-            $discount.val(arr.discount)
-            $imgurl.val(arr.imgurl)
-            $imgarr.val(arr.imgarr)
-            $kind.val(arr.kind)
-            $qty.val(arr.qty)
-            $intro.val(arr.introduce)
+        	console.log(res)
+        	console.log(888	)
+           /
+            $goodname.val(res[0].name)
+            $price.val(res[0].price)
+            $discount.val(res[0].sale)
+            $imgurl.val(res[0].imgurl)
+            $imgarr.val(res[0].imgarr)
+            $kind.val(res[0].category)
+            $qty.val(res[0].sqty)
+            $intro.val(res[0].description)
+
+            console.log(res[0].name)
         }
       })
     }
@@ -84,9 +86,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		        })
 		      }
     })
-    function save(){
-
-    }
+  
 
 
 

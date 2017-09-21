@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
-  <script src="./table.js"></script>
+  <script src="./js/table.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -134,7 +134,7 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
             <tr>
-              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">商品名</th><th class="table-type">种类</th><th class="table-author am-hide-sm-only">价格</th><th class="table-date am-hide-sm-only">简介</th><th class="table-set">操作</th>
+              <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">商品名</th><th class="table-type">种类</th><th class="table-author am-hide-sm-only">价格</th><th class="table-date am-hide-sm-only">折扣</th><th class="table-set">总数量</th><th class="table-set">简介</th>
             </tr>
             </thead>
             <tbody id="list">
@@ -160,14 +160,14 @@
           <div class="am-cf">
             共 15 条记录
             <div class="am-fr">
-              <ul class="am-pagination">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+              <ul class="am-pagination" id="page">
+               <!--  <li class="am-disabled"><a >«</a></li>
+               <li class="am-active"><a >1</a></li>
+               <li><a >2</a></li>
+               <li><a >3</a></li>
+               <li><a >4</a></li>
+               <li><a >5</a></li>
+               <li><a >»</a></li> -->
               </ul>
             </div>
           </div>
@@ -194,17 +194,14 @@
   <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
 </footer>
 
-<!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
+<!-- <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script> -->
+
 <script src="./js/jquery.js"></script>
-<!--<![endif]-->
-<!-- <script src="assets/js/amazeui.min.js"></script> -->
-<!-- <script src="assets/js/app.js"></script> -->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
 
 </body>
 </html>
