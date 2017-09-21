@@ -30,17 +30,12 @@ var connect = require("./src/api/connect");
 connect.con();//执行连接
 
 
-
-//test
-
-app.get('/aa',function(req,res){
-	res.send('zhongwen')
-})
-
-
-
 //reg模块
 var reg = require("./src/api/reg.js") ;
+reg(app,connect.connection);
+
+//login模块
+var reg = require("./src/api/login.js") ;
 reg(app,connect.connection);
 
 

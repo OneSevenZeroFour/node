@@ -1,5 +1,5 @@
 function reg(app,connection) {
-	//引入md5加密模块,下面用得到
+	//引入md5加密模块
 	var crypto = require('crypto');
 	function cryptPwd(password) {
 	    var md5 = crypto.createHash('md5');
@@ -43,7 +43,7 @@ function reg(app,connection) {
 			connection.query(sql, function(error, results, fields) {
 				if(error) throw error;
 				if(results) {
-					res.send ("插入成功");
+					res.send ("插入数据成功");
 				} else {
 					res.send("插入失败")
 				}

@@ -215,7 +215,8 @@ require(['config'],function(){
                     $alert3.hide();
                     $.ajax({
                         type:"get",
-                        url:"/api/login.php",
+//                      url:"/api/login.php",
+						url:"http://localhost:12345/login",
                         data:"username="+$logname.val()+"&password="+$logpass.val(),
                         success:function(res){
                             if(res=='ok'){
