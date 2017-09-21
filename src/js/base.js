@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-09-02 14:25:24
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-11 17:09:33
+* @Last Modified time: 2017-09-21 15:36:34
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -353,5 +353,49 @@ if($buycar.length>0){
                 window.location.reload();
             }
         } 
+// -------------定位------------------
+var map = new BMap.Map("allmap");
+var geolocation = new BMap.Geolocation();//根据浏览器定位经纬度
+var geoc = new BMap.Geocoder();//根据经纬度获取实际地址实例                                          
+function show(pt){
+        geoc.getLocation(pt, function(rs){
+            var now = new Date()
+                now.setDate(now.getDate()+100);
+            var addComp = rs.addressComponents;
+            alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+            $('.addre').html("定位: "+addComp.province + ", " + addComp.city + ", " + addComp.district)
+            document.cookie='addre='+"定位: "+addComp.province + ", " + addComp.city + ", " + addComp.district +';expires='+now.toString()+';path=/';
+        })
+
+} 
+//请求定位
+$('.addre').on('click',function(){
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            var mk = new BMap.Marker(r.point);
+            map.addOverlay(mk);
+            map.panTo(r.point);
+
+            var lng = r.point.lng;
+            var lat = r.point.lat;
+            // var pt = {
+            //         lng:lng,
+            //         lat:lat
+            //     };
+            //经纬度转化为百度地图点格式
+            var pt = new BMap.Point(lng,lat);
+            //放入geco实例中转化为实际地址
+            show(pt);
+            // alert('您的位置：'+r.point.lng+','+r.point.lat);
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }        
+            },{enableHighAccuracy: true})                        
+    })
+        var address = cookieget('addre');
+        if(address){
+            $('.addre').html(address)
+        }
     })
 })

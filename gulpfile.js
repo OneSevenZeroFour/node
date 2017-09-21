@@ -2,7 +2,7 @@
 * @Author: liumian
 * @Date:   2017-08-31 14:16:47
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-11 17:28:50
+* @Last Modified time: 2017-09-21 14:20:32
 */
 //请求gulp插件
 var gulp = require('gulp');
@@ -63,10 +63,10 @@ gulp.task('server',function(){
         //         server:'./src/',
         
                 //代理服务器
-                proxy:'http://localhost:8888',
+                proxy:'http://localhost:1111',
         
                 //端口名配置
-                port:3000,
+                port:8888,
         
                 //监听以下文件类型，自动刷新页面
                 files:['./src/**/*.html','./src/css/*.css','./src/api/*.php']

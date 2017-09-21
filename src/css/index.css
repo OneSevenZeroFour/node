@@ -2,9 +2,9 @@
 
 .container { min-width: 1200px; }
 
-.banner { height: 400px; width: 765px; margin-left: 262px; }
+.banner { height: 400px; width: 765px; margin-left: 262px; float: left; }
 
-.navimg { width: 190px; height: 390px; position: absolute; top: 164px; right: 25px; }
+.navimg { width: 190px; height: 390px; float: left; margin-left: 5px; }
 
 .navimg img { z-index: 10000; }
 
@@ -362,6 +362,16 @@
 
 .new .new-r ul li .li-l p:nth-child(2) a span { color: #C80F2F; }
 
-.topbtn { position: fixed; top: 200px; right: 30px; width: 25px; height: 89px; display: none; background: url("/img/backtop.jpg") no-repeat; }
+#toTop { position: fixed; bottom: 10px; right: 10px; padding: 10px; }
 
-.topbtn:hover { cursor: pointer; }
+#toTop > ul > li { border: 1px solid #ddd; height: 52px; width: 52px; overflow: hidden; background-color: rgba(0, 0, 0, 0.04); text-align: center; }
+
+#toTop > ul > li > i { font-size: 30px; line-height: 52px; color: #f00; }
+
+#toTop > ul > li > i > a > span { font-size: 14px; display: none; line-height: 50px; }
+
+#toTop > ul li:hover { background-color: #f00; }
+
+#toTop > ul > li:hover i { display: none; }
+
+#toTop > ul li:hover span { display: block; color: #fff; }

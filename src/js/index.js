@@ -2,7 +2,7 @@
 * @Author: liumian
 * @Date:   2017-08-31 15:03:25
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-14 20:17:50
+* @Last Modified time: 2017-09-21 14:26:51
 */
 require(['config'],function(){
     require(['jquery','common','jqueryui'],function($,com,jqui){
@@ -125,21 +125,11 @@ require(['config'],function(){
                 }                
             }
         })
-        //返顶动画
-        $topbtn = $('.topbtn');
-        $(document).on('scroll',function(){
-            var scrollTop = $(window).scrollTop();
-            //当滚动到一定距离时，显示按钮
-            if(scrollTop>800){
-                $topbtn.fadeIn();
-            }else{
-                $topbtn.fadeOut();
-            }
-        })
-        //绑定事件
-        $topbtn.on('click',function(){
-            $('html,body').stop().animate({'scrollTop':0},'slow');
-        })
+        
+        // //绑定事件
+        // $topbtn.on('click',function(){
+        //     $('html,body').stop().animate({'scrollTop':0},'slow');
+        // })
 
         //抢购倒计时
         $sales = $('.sales');

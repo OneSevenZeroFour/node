@@ -25,6 +25,12 @@ a { text-decoration: none; }
 
 .head .sign ul .btnout:hover { color: #f00; cursor: pointer; }
 
+.head .addre { height: 32px; width: 300px; float: left; margin-left: 30px; line-height: 32px; font-size: 12px; color: #58bc58; }
+
+.head .addre:hover { cursor: pointer; }
+
+.head #allmap { display: none; }
+
 .head .infor { float: right; margin-right: 40px; }
 
 .head .infor ul .inforli { float: left; height: 31px; line-height: 31px; position: relative; }
