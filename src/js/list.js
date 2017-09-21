@@ -42,7 +42,8 @@ require(['config'],function(){
         //-------------进入第一次请求--------------
         $.ajax({
                 type:"get",
-                url:"/api/list.php",
+                url:"http://localhost:12345/list",
+//              url:"/api/list.php",
                 data:"pageNo="+pageNo+"&qty="+qty,
                 success:function(res){
                     show(res);
@@ -68,7 +69,8 @@ require(['config'],function(){
             }
             $.ajax({
                 type:"get",
-                url:"/api/list.php",
+//              url:"/api/list.php",
+                url:"http://localhost:12345/list",
                 data:"pageNo="+pageNo+"&qty="+qty,
                 success:function(res){
                     show(res);
@@ -95,7 +97,8 @@ require(['config'],function(){
                 }
             $.ajax({
                 type:"get",
-                url:"/api/list.php",
+//              url:"/api/list.php",
+                url:"http://localhost:12345/list",
                 data:"pageNo="+pageNo+"&qty="+qty,
                 success:function(res){
                     show(res);
@@ -108,7 +111,8 @@ require(['config'],function(){
             console.log(33)
             $.ajax({
                 type:'get',
-                url:"/api/list.php",
+//              url:"/api/list.php",
+                url:"http://localhost:12345/list",
                 data:"pageNo="+pageNo+"&qty="+qty+"&cate="+$(this).text(),
                 success:function(res){
                     console.log(66)
@@ -124,7 +128,8 @@ require(['config'],function(){
                 console.log('sorts')
                 $.ajax({
                     type:'get',
-                    url:"/api/list.php",
+//                  url:"/api/list.php",
+                    url:"http://localhost:12345/list",
                     data:"pageNo="+pageNo+"&qty="+qty+"&sqty=sqty",
                     success:function(res){
                         show(res);
@@ -134,7 +139,8 @@ require(['config'],function(){
             else if($(this).hasClass('sortp')){
                $.ajax({
                     type:'get',
-                    url:"/api/list.php",
+//                  url:"/api/list.php",
+                    url:"http://localhost:12345/list",
                     data:"pageNo="+pageNo+"&qty="+qty+"&price=price",
                     success:function(res){
                         console.log(res)

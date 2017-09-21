@@ -305,7 +305,7 @@ if($buycar.length>0){
                 if($('.banner').length>0){
                     $listul.hide();
                 }
-                $nav.css({position:'fixed',top:0,left:0})
+                $nav.css({position:'fixed',top:"0",left:"50%",transform:"translate(-50%,0)"})
             }else{
                 //当滚动条小于500时，显示首页的下拉导航栏
                 if($('.banner').length>0){

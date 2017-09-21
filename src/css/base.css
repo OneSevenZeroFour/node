@@ -1,6 +1,8 @@
 @charset "UTF-8";
 * { margin: 0; padding: 0; -webkit-user-select: none; }
 
+body { width: 1264px; margin: 0 auto; }
+
 ul, li { list-style: none; }
 
 a { text-decoration: none; }

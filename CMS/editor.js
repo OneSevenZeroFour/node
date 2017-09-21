@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
        $intro = $('#user-intro')
     var id = window.location.search.slice(1);
     console.log(id)
+
     // if(id.length>0){
     //   $.ajax({
     //     type:"post",
@@ -34,6 +35,32 @@ document.addEventListener('DOMContentLoaded',function(){
     //     }
     //   })
     // }
+
+    if(id.length>0){
+      $.ajax({
+        type:"post",
+        url:"http://localhost:12345/change",
+        data:{
+          id:id
+        },
+        success:function(res){
+        	console.log(res)
+        	console.log(888	)
+           
+            $goodname.val(res[0].name)
+            $price.val(res[0].price)
+            $discount.val(res[0].sale)
+            $imgurl.val(res[0].imgurl)
+            $imgarr.val(res[0].imgarr)
+            $kind.val(res[0].category)
+            $qty.val(res[0].sqty)
+            $intro.val(res[0].description)
+
+            console.log(res[0].name)
+        }
+      })
+    }
+
     $('#c_save').click(function(){
 		      var goodname = $goodname.val();
 		      var price = $price.val();
@@ -84,6 +111,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		        })
 		      }
     })
+
     // 图片上传
     $('#upload').on('click',function(){
             var formData = new FormData();
@@ -107,6 +135,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 }
             })
         })
+
+  
+
+
+
 
 
 

@@ -2,13 +2,13 @@
 * @Author: liumian
 * @Date:   2017-08-31 15:03:25
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-21 14:26:51
+* @Last Modified time: 2017-09-21 20:27:59
 */
 require(['config'],function(){
     require(['jquery','common','jqueryui'],function($,com,jqui){
         $('#head').load('html/base.html .header')
         $('#foot').load('html/base.html .foot')
-        require(['/js/base'],function(){
+        require(['base'],function(){
 
         // $slidenav.show();
         // $(window).on('scroll',function(){
@@ -126,10 +126,17 @@ require(['config'],function(){
             }
         })
         
+
         // //绑定事件
         // $topbtn.on('click',function(){
         //     $('html,body').stop().animate({'scrollTop':0},'slow');
         // })
+
+        //绑定事件
+//      $topbtn.on('click',function(){
+//          $('html,body').stop().animate({'scrollTop':0},'slow');
+//      })
+
 
         //抢购倒计时
         $sales = $('.sales');
