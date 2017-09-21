@@ -38,6 +38,9 @@ reg(app,connect.connection);
 var reg = require("./src/api/login.js") ;
 reg(app,connect.connection);
 
+//list模块
+var reg = require("./src/api/list.js") ;
+reg(app,connect.connection);
 
 
 
