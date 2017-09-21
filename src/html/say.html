@@ -67,24 +67,20 @@
                 <div id="kefu_says"></div>
                 <div id="area_toobar"></div>
                 <div id="me_says">
-                <textarea id="txtsays"></textarea>
+                <input id="txtsays">
                 <button id="main_btn">发送</button>
                 </div>
             </div>
             <div class="main_right">
                 <div class="listtitle">请选择在线客服</div>
-                <button onclick = "addUser()" id="select">选择客服</button>
-                <ul>
-                    <li class="online">
-                        <a href="">
-                            <img src="../img/touxiang.png"/>在线订购 在线
-                        </a>
-                    </li>
-                    <li class="online"><a href=""><img src="../img/touxiang.png"/>产品咨询 在线</a></li>
-                    <li class="online"><a href=""><img src="../img/touxiang.png"/>订单查询 在线</a></li>
-                    <li class="online"><a href=""><img src="../img/touxiang.png"/>汇款通知 在线</a></li>
+                <button id="select">选择客服</button>
+                <ul class="ul_1">
+                    <li class="online" id="kefu_1"><a><img src="../img/touxiang.png"/>在线订购 在线</a></li>
+                    <li class="online" id="kefu_2"><a><img src="../img/touxiang.png"/>产品咨询 在线</a></li>
+                    <li class="online" id="kefu_3"><a><img src="../img/touxiang.png"/>订单查询 在线</a></li>
+                    <li class="online" id="kefu_4"><a><img src="../img/touxiang.png"/>汇款通知 在线</a></li>
                 </ul>
-            
+                <!-- <button id="btn_bottom">重新选择客服</button> -->
             </div>
     </div>
     <script type="text/javascript">
@@ -92,10 +88,15 @@
             var msglist = document.getElementsByClassName('main_left')[0];
                 // console.log(msglist,8888)
             var list = document.getElementById('kefu_says');
-            var msg = document.getElementsByTagName('textarea')[0];
+            var msg = document.getElementById('txtsays');
             var btn = document.getElementById('main_btn');
             var select = document.getElementById('select');
             var ul = document.getElementsByTagName('ul')[1];
+            var kefu_1 = document.getElementById('kefu_1');
+            var kefu_2 = document.getElementById('kefu_2');
+            var kefu_3 = document.getElementById('kefu_3');
+            var kefu_4 = document.getElementById('kefu_4');
+
             // console.log(ul)
                 //创建QA
             var arr_q = ['你好','在吗','亲，在吗']
@@ -105,12 +106,47 @@
             btn.onclick = function(){
                 // 获取输入的内容
                 var _msg = msg.value;
-                 sendMsg(_msg);
+                sendMsg(_msg);
+                send()
+                //发送完后清空输出框
+                msg.value = '';
             }
             select.onclick = function(){
+                // console.log(ul.children)
                 ul.style.display='block';
-            }
+                for(var i=0;i<ul.children.length;i++){
+                    ul.children[i].style.display='block';
+                }
+                // console.log(kefu_1)
+                kefu_1.onclick=function(){
+                    // console.log(29999)
+                    kefu_1.style.display='block';
+                    kefu_2.style.display='none';
+                    kefu_3.style.display='none';
+                    kefu_4.style.display='none';
+                }
+                kefu_2.onclick=function(){
+                    kefu_1.style.display='none';
+                    kefu_2.style.display='block';
+                    kefu_3.style.display='none';
+                    kefu_4.style.display='none';
+                }
+                kefu_3.onclick=function(){
+                    kefu_1.style.display='none';
+                    kefu_2.style.display='none';
+                    kefu_3.style.display='block';
+                    kefu_4.style.display='none';
 
+                }
+                kefu_4.onclick=function(){
+                    kefu_1.style.display='none';
+                    kefu_2.style.display='none';
+                    kefu_3.style.display='none';
+                    kefu_4.style.display='block';
+                }
+                send();
+            }
+            
             //ctrl+回车
             msg.onkeyup = function(e){
                 // 兼容event对象
@@ -129,8 +165,7 @@
                 li.className = 'active';
                 // 把消息写入ul
                 list.appendChild(li);
-                // 清空并自动获得焦点
-                msg.value = '';
+                // 自动获得焦点
                 msg.focus();
                 //自动回复
                 var idx = arr_q.indexOf(_msg);
@@ -146,41 +181,58 @@
                     },3000);
             }
             //跟后端连接
-            var name = prompt("用户名", "laoxie");
+            // var name = document.querySelectorAll('.online');
+            // console.log(name,4387)
+            // var name = prompt("用户名", "laoxie");
             // console.log(name)
-            var socket = io("http://localhost:2000");
-            console.log(name,999,99773)
-            function addUser(){
-                socket.emit('adduser', {
-                    name,
-                });
-            }
+            var socket = io("http://localhost:18000");
+            // console.log(kefu_1.innerText)
+            
+            // function addUser(){
+            //     socket.emit('adduser', {
+            //         kefu1,
+            //         kefu2,
+            //         kefu3,
+            //         kefu4
+            //     });
+            // }
             // console.log(document.querySelector("#txtsays").value,999)
             // console.log(document.querySelector("#kefu_says").value,7999)
-            function send() {
+            function send(){
                 //发送请求
+                var kefu1 = kefu_1.innerText;
+                var kefu2 = kefu_2.innerText;
+                var kefu3 = kefu_3.innerText;
+                var kefu4 = kefu_4.innerText;
+                    // console.log(document.querySelector("#txtsays").value,999)
+                    // console.log(document.querySelector(".online").innerText,8788)
                 socket.emit('chat', {
-                    name,
+                    kefu1,
+                    kefu2,
+                    kefu3,
+                    kefu4,
                     message: document.querySelector("#txtsays").value,
-                    toId:document.querySelector("#kefu_says").value
+                    toId:document.querySelector(".online").innerText
                 });
             }
             socket.on("getMessage", function(data) {
-                console.log(data)
+                console.log(data,999,data.message)
                 document.querySelector("#kefu_says").innerHTML += (data.message + "<br>")
             })
-            socket.on("showuserlist", function(data) {
-                console.log(data)
-                var html = data.map(function(item){
-                    return `
-                    <option value="${item.id}">${item.name}</option>
-                    `
-                }).join("");
-                document.querySelector("#kefu_says").innerHTML = html;
-            })
+            // socket.on("showuserlist", function(data) {
+            //     console.log(data)
+            //     // console.log(item)
+            //     var html = data.map(function(item){
+            //         console.log(item)
+            //         return `
+            //         <li class="online" id="${item.id}"><a><img src="../img/touxiang.png"/>"${item.name1}"</a></li>
+            //         `
+            //     }).join("");
+            //     document.querySelector(".ul_1").innerHTML = html;
+            // })
         });
         </script>
         <script src="../js/socket.js"></script>
-        <script src="../js/say.js"></script>
+        <!-- <script src="../js/say.js"></script> -->
 </body>
 </html>
