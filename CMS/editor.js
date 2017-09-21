@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 contentType: false,
                 success: function(data) {
                     console.log(data)
-                    $('#img').attr('src',"../"+data.path)
+                    $('#img').attr('src',"http://localhost:12345/uploads/"+data.path)
                 }
             })
         })
