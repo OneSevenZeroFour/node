@@ -43,6 +43,9 @@ list(app,connect.connection);
 var goods = require("./src/api/goods.js") ;
 goods(app,connect.connection);
 
+//存购物车模块
+var saveCar = require("./CMS/api/saveCar.js");
+	saveCar(app,mysql,bodyParse);
 
 //指定根目录下的pubilc文件夹作为静态资源的存放地方(css,js,html,json,jpg)
 app.use(express.static('src'));
