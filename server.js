@@ -5,14 +5,10 @@ update:cjm
 
 */
 
-
-
-
-
 //服务器,设置静态文件夹
 var express = require('express');
 var mysql = require('mysql');
-var bodyParse = require('body-parser')
+var bodyParse = require('body-parser');
 //初始化express
 var app = express();
 
@@ -23,8 +19,29 @@ app.listen(12345);
 //引入自定义模块
 
 var handle = require('./CMS/api/sql_caozuo.js');
-	handle(app,mysql,bodyParse);
+handle(app,mysql,bodyParse);
+	
 
+
+//引入数据库连接模块,打开数据库
+var connect = require("./src/api/connect");
+//connect.mysql //暴露参数,需要的时候可以用
+//connect.connection //暴露参数,需要的时候可以用
+connect.con();//执行连接
+
+
+
+//test
+
+app.get('/aa',function(req,res){
+	res.send('zhongwen')
+})
+
+
+
+//reg模块
+var reg = require("./src/api/reg.js") ;
+reg(app,connect.connection);
 
 
 

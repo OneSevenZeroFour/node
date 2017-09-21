@@ -70,7 +70,8 @@ require(['config'],function(){
                 }else{
                     $.ajax({
                         type:"get",
-                        url:"/api/reg.php",
+//                      url:"/api/reg.php",
+						url:"http://localhost:12345/reg",
                         data:"username="+$(this).val(),
                         success: res => {
                             if(res=='fail'){
@@ -185,7 +186,8 @@ require(['config'],function(){
                     $alert8.hide();
                     $.ajax({
                         type:"get",
-                        url:"/api/reg.php",
+                        url:"http://localhost:12345/reg",
+//                      url:"/api/reg.php",
                         data:"username="+$regname.val()+"&password="+$regpass.val()+"&email="+$regemail.val()+"&commit=commit",
                         success:function(res){
                           if(res=='插入数据成功'){
