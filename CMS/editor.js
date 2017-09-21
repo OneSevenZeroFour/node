@@ -12,6 +12,30 @@ document.addEventListener('DOMContentLoaded',function(){
        $intro = $('#user-intro')
     var id = window.location.search.slice(1);
     console.log(id)
+
+    // if(id.length>0){
+    //   $.ajax({
+    //     type:"post",
+    //     url:"http://localhost:12345/change",
+    //     data:{
+    //       id:id
+    //     },
+    //     success:function(res){
+    //         var arr=JSON.parse(res);
+    //         arr=arr.results;
+    //         arr=arr[0]
+    //         $goodname.val(arr.goodname)
+    //         $price.val(arr.price)
+    //         $discount.val(arr.discount)
+    //         $imgurl.val(arr.imgurl)
+    //         $imgarr.val(arr.imgarr)
+    //         $kind.val(arr.kind)
+    //         $qty.val(arr.qty)
+    //         $intro.val(arr.introduce)
+    //     }
+    //   })
+    // }
+
     if(id.length>0){
       $.ajax({
         type:"post",
@@ -22,7 +46,7 @@ document.addEventListener('DOMContentLoaded',function(){
         success:function(res){
         	console.log(res)
         	console.log(888	)
-           /
+           
             $goodname.val(res[0].name)
             $price.val(res[0].price)
             $discount.val(res[0].sale)
@@ -36,6 +60,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
       })
     }
+
     $('#c_save').click(function(){
 		      var goodname = $goodname.val();
 		      var price = $price.val();
@@ -86,7 +111,33 @@ document.addEventListener('DOMContentLoaded',function(){
 		        })
 		      }
     })
+
+    // 图片上传
+    $('#upload').on('click',function(){
+            var formData = new FormData();
+            //记得append("xxx")名字要跟后端一致
+            // for(var i=0;i<$('#file')[0].files.length;i++){
+            //     formData.append('logo', $('#file')[0].files[i]); 
+            // }
+            formData.append('logo',$('#file')[0].files[0]);
+            console.log($('#file')[0].files[0])
+            console.log(formData)
+            $.ajax({
+                url: 'http://localhost:12345/upload',
+                type: 'POST',
+                cache: false, //不必须
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log(data)
+                    $('#img').attr('src',"http://localhost:12345/uploads/"+data.path)
+                }
+            })
+        })
+
   
+
 
 
 

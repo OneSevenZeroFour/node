@@ -1,5 +1,5 @@
 
-function handle(app,mysql,bodyParse){
+function handle(app,mysql,bodyParse,multer){
 
 	var shujuku = require('./sql.js');
 	var sjMysql = mysql;
@@ -110,6 +110,43 @@ function handle(app,mysql,bodyParse){
 
 
 
+
+		var multer = require('multer');
+		/*var upload = multer({
+			//如果用这种方法上传，要手动添加文明名后缀
+			dest: 'uploads/'
+		})*/
+		var storage = multer.diskStorage({
+			//设置上传后文件路径，uploads文件夹会自动创建。
+			destination: function(req, file, cb) {
+				cb(null, './CMS/uploads')
+			},
+			//给上传文件重命名，获取添加后缀名
+			filename: function(req, file, cb) {
+				var fileFormat = (file.originalname).split(".");
+				//给图片加上时间戳格式防止重名名
+				//比如把 abc.jpg图片切割为数组[abc,jpg],然后用数组长度-1来获取后缀名
+				cb(null, file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]);
+			}
+		});
+		var upload = multer({
+			storage: storage
+		});
+
+		//单图上传
+		//app.post('/upload-single', upload.single('logo'), function(req, res, next) {
+		app.post('/upload', upload.any(), function(req, res, next) {	
+			res.append("Access-Control-Allow-Origin","*");
+			console.log(req.files)
+			console.log('文件类型：%s', req.files[0].mimetype);
+			console.log('原始文件名：%s', req.files[0].originalname);
+			console.log((req.files[0].originalname).split("."))
+			console.log('文件大小：%s', req.files[0].size);
+			console.log('文件保存路径：%s', req.files[0].path);
+			res.send({
+				path:req.files[0].filename
+			});
+		});
 
 
 		console.log('已经启动xinzeng模块')

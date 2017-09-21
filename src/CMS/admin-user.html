@@ -14,14 +14,6 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
-  
-  
-  <!--富文本编辑区的样式和脚本-->
-  <link rel="stylesheet" href="admin-user.css" />
-  <script type="text/javascript" src="wangEditor-3.0.9/release/wangEditor.min.js"></script>
-  <script type="text/javascript" src="editor.js"></script>
-  <!--富文本编辑区的样式和脚本结束-->
-  
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -97,7 +89,7 @@
   <div class="admin-content">
     <div class="admin-content-body">
       <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品信息</strong> / <small>Goods information</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
       </div>
 
       <hr/>
@@ -107,12 +99,18 @@
           <div class="am-panel am-panel-default">
             <div class="am-panel-bd">
               <div class="am-g">
+                <div class="am-u-md-4">
+                  <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
+                </div>
                 <div class="am-u-md-8">
-                  <img src="" width="100" height="100" id="img"/>             
-                  <input type="file" id="file">
-                  <p class="am-form-help">请选择要上传的文件...</p>
-                  <button type="button" class="am-btn am-btn-primary am-btn-xs" id="upload">预览</button>
-                  <button id="savebtn">保存</button> 
+                  <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                  <form class="am-form">
+                    <div class="am-form-group">
+                      <input type="file" id="user-pic">
+                      <p class="am-form-help">请选择要上传的文件...</p>
+                      <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -144,7 +142,7 @@
             <div class="am-form-group">
               <label for="user-name" class="am-u-sm-3 am-form-label">商品名</label>
               <div class="am-u-sm-9">
-                <input type="text" id="user-name" placeholder="商品名 / Name">
+                <input type="text" id="user-name" placeholder="姓名 / Name">
                 <small>输入商品名</small>
               </div>
             </div>
@@ -152,7 +150,7 @@
             <div class="am-form-group">
               <label for="user-email" class="am-u-sm-3 am-form-label">价格</label>
               <div class="am-u-sm-9">
-                <input type="text" id="user-email" placeholder="价格" / Email">
+                <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
                 <small>请输入商品价格</small>
               </div>
             </div>
@@ -160,14 +158,14 @@
             <div class="am-form-group">
               <label for="user-phone" class="am-u-sm-3 am-form-label">折扣</label>
               <div class="am-u-sm-9">
-                <input type="text" id="user-phone" placeholder="请输入折扣">
+                <input type="tel" id="user-phone" placeholder="请输入折扣">
               </div>
             </div>
 
             <div class="am-form-group">
               <label for="user-QQ" class="am-u-sm-3 am-form-label">图片</label>
               <div class="am-u-sm-9">
-                <input type="text"  id="user-QQ" placeholder="输入图片链接">
+                <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入图片链接">
               </div>
             </div>
 
@@ -179,36 +177,16 @@
             </div>
 
             <div class="am-form-group">
-              <label for="user-weibo" class="am-u-sm-3 am-form-label">种类</label>
+              <label for="user-intro" class="am-u-sm-3 am-form-label">富文本编辑区</label>
               <div class="am-u-sm-9">
-                <input type="text" id="category" placeholder="种类">
-              </div>
-            </div>
-
-            <div class="am-form-group">
-              <label for="user-weibo" class="am-u-sm-3 am-form-label">数量</label>
-              <div class="am-u-sm-9">
-                <input type="text" id="user-qty" placeholder="数量">
-              </div>
-            </div>
-
-            <div class="am-form-group">
-
-
-              <label for="user-intro" class="am-u-sm-3 am-form-label">商品简介</label>
-
-              <div class="am-u-sm-9">
-								<!--    富文本编辑区域             -->
-                <textarea class="" rows="5" id="user-intro" placeholder="简介"></textarea>
-                <small id="ed">进入高级模式</small>
-                <div id="editor"></div>
-                <!--    富文本编辑区域结束             -->
+                <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                <small>富文本编辑区</small>
               </div>
             </div>
 
             <div class="am-form-group">
               <div class="am-u-sm-9 am-u-sm-push-3">
-                <button id="c_save" type="button" class="am-btn am-btn-primary">保存修改</button>
+                <button onclick="save()" type="button" class="am-btn am-btn-primary">保存修改</button>
               </div>
             </div>
           </form>
@@ -233,13 +211,89 @@
   <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
 </footer>
 
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
 
-<script src="./js/jquery.js"></script>
-
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../LIB/jquery-3.2.1.js"></script>
+<!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
 
 <script src="assets/js/app.js"></script>
-
-
+<script type="text/javascript">
+       $name = $('#user-name')
+       $email = $('#user-email')
+       $tel = $('#user-phone')
+       $qq = $('#user-QQ')
+       $weibo = $('#user-weibo')
+       $intro = $('#user-intro')
+    var id = window.location.search.slice(1);
+    console.log(id)
+    if(id.length>0){
+      $.ajax({
+        type:"post",
+        url:"http://localhost:12345/change",
+        data:{
+          id:id
+        },
+        success:function(res){
+            var arr=JSON.parse(res);
+            arr=arr.results;
+            arr=arr[0]
+            $name.val(arr.name)
+            $email.val(arr.email)
+            $tel.val(arr.tel)
+            $qq.val(arr.qq)
+            $weibo.val(arr.weibo)
+            $intro.val(arr.introduce)
+        }
+      })
+    }
+    function save(){
+      var name = $name.val();
+      var email = $email.val();
+      var tel = $tel.val();
+      var qq = $qq.val();
+      var weibo = $weibo.val();
+      var intro = $intro.val();
+      if(id.length>0){
+          $.ajax({
+          type:"post",
+          url:"http://localhost:12345/update",
+          data:{
+            id:id,
+            name:name,
+            email:email,
+            tel:tel,
+            qq:qq,
+            weibo:weibo,
+            intro:intro
+          },
+          success:function(res){
+            window.location.href = './admin-table.html';
+          }
+        })
+      }else{
+        $.ajax({
+          type:"post",
+          url:"http://localhost:12345/insert",
+          data:{
+            name:name,
+            email:email,
+            tel:tel,
+            qq:qq,
+            weibo:weibo,
+            intro:intro
+          },
+          success:function(res){
+            window.location.href = './admin-table.html';
+          }
+        })
+      }
+    }
+</script>
 </body>
 </html>
