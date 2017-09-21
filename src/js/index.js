@@ -8,7 +8,7 @@ require(['config'],function(){
     require(['jquery','common','jqueryui'],function($,com,jqui){
         $('#head').load('html/base.html .header')
         $('#foot').load('html/base.html .foot')
-        require(['/js/base'],function(){
+        require(['base'],function(){
 
         // $slidenav.show();
         // $(window).on('scroll',function(){
@@ -127,9 +127,9 @@ require(['config'],function(){
         })
         
         //绑定事件
-        $topbtn.on('click',function(){
-            $('html,body').stop().animate({'scrollTop':0},'slow');
-        })
+//      $topbtn.on('click',function(){
+//          $('html,body').stop().animate({'scrollTop':0},'slow');
+//      })
 
         //抢购倒计时
         $sales = $('.sales');
