@@ -35,13 +35,16 @@ var reg = require("./src/api/reg.js") ;
 reg(app,connect.connection);
 
 //login模块
-var reg = require("./src/api/login.js") ;
-reg(app,connect.connection);
+var login = require("./src/api/login.js") ;
+login(app,connect.connection);
 
 //list模块
-var reg = require("./src/api/list.js") ;
-reg(app,connect.connection);
+var list = require("./src/api/list.js") ;
+list(app,connect.connection);
 
+//goods模块
+var goods = require("./src/api/goods.js") ;
+goods(app,connect.connection);
 
 
 //指定根目录下的pubilc文件夹作为静态资源的存放地方(css,js,html,json,jpg)

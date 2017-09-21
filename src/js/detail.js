@@ -7,7 +7,8 @@ require(['jquery'],function(){
     var id = location.search.slice(1);
     $.ajax({
         type:"get",
-        url:"/api/goods.php",
+//      url:"/api/goods.php",
+        url:"http://localhost:12345/goods",
         data:"id="+id,
         success:function(res){
             console.log(res)
