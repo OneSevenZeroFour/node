@@ -27,7 +27,7 @@ function login(app, connection) {
 			if(results[0] == undefined) {
 				res.send("fail")
 			} else {
-
+				
 				res.send(results)
 			}
 		});

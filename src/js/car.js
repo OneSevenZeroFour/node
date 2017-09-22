@@ -77,9 +77,14 @@ require(['config'],function(){
                         arr_goodlist.splice(idx,1);
                     }
                 })
+                
+              
             }
             showcar(arr_goodlist);
             document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/';
+
+            //存进购物车
+           
         }
     })
 })

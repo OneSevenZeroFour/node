@@ -34,7 +34,7 @@ require(['jquery'],function(){
                                     <img class="zoomImg" src=""/>
                                 </div>
                                 <p>分享到 :</p>
-                            </div>
+                             </div>
                             <div class="show-r">
                                 <h2>${arr.name}</h2>
                                 <div class="show1">
@@ -48,8 +48,8 @@ require(['jquery'],function(){
                                     <p>所属分类：<span>面部护理</span> → <span>润肤步骤</span> → <span>夜间</span></p>
                                     <p>用户评分:<img src="" alt=""><a href="">已有31条评论</a></p>
                                     <p>运费说明：购物满80元免费<a href="">快递查看运费详情</a></p>
-                                    <p>消费保障：<span><i></i>品质承诺</span><span><i></i>货到付款</span>  <span><i></i>不满意退货</span> <span><i></i>可靠包装</span></p>
-                                </div>
+                                    <p>消费保障：<span><i></i>品质承诺</span><span><i></i>货到付款</s
+                                </div>pan>  <span><i></i>不满意退货</span> <span><i></i>可靠包装</span></p>
                                 <div class="buycar">
                                 <span>我要买:</span><span class="buyjian">-</span><input class="buyqty" type="text" /><span class="buyjia">+</span><span class="add-car" data-id=${arr.id}>加入购物车</span>
                                 </div>
