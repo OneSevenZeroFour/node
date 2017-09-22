@@ -52,6 +52,11 @@ goods(app,connect.connection);
 var saveCar = require("./CMS/api/saveCar.js");
 	saveCar(app,mysql,bodyParse);
 
+//站内搜索
+//存购物车模块
+var sousuo = require("./CMS/api/sousuo.js");
+	sousuo(app,mysql,bodyParse);
+
 //指定根目录下的pubilc文件夹作为静态资源的存放地方(css,js,html,json,jpg)
 app.use(express.static('src'));
 app.use(express.static('CMS'));

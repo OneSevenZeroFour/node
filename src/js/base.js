@@ -465,5 +465,27 @@ $('.addre').on('click',function(){
         if(address){
             $('.addre').html(address)
         }
+
+
+        //站内搜搜
+        $('.clearfix button').click(function(){
+            var ssVal = $('.clearfix input').val();//搜索的val
+                console.log(ssVal)
+                console.log('SS')
+            //ajax请求数据库
+                $.ajax({
+                    url:"http://localhost:12345/sousuo",
+                    data:{value:ssVal},
+                    type:'post',
+                    success:function(res){
+                        document.cookie = "sousuoVal="+JSON.stringify(res)+";path=/"
+                        window.location.href = "list.html"
+                    }
+                })
+        })
+
+
+
+
     })
 })

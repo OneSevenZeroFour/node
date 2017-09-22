@@ -21,9 +21,7 @@ function saveCar(app,mysql,bodyParse){
 		app.post('/saveCar',function(req,res){
 			
 				// res.append("Access-Control-Allow-Origin", "*")
-				console.log(req.body.username)
-				console.log(req.body.car)
-
+				
 				connection.query(`update user set userCar = '${req.body.car}' where username ='${req.body.username}'`,function(error, results, fields){
 						//[{},{}]
 						console.log('已经存入购物车')
@@ -38,7 +36,7 @@ function saveCar(app,mysql,bodyParse){
 
 	
 
-
+		console.log('启动保存购物车模块')
 
 
 

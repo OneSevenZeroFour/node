@@ -149,7 +149,7 @@ function handle(app,mysql,bodyParse,multer){
 		});
 
 
-		console.log('已经启动xinzeng模块')
+		console.log('已经启动mysql操作模块')
 
 }
 
