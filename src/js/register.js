@@ -221,19 +221,25 @@ require(['config'],function(){
 						url:"http://localhost:12345/login",
                         data:"username="+$logname.val()+"&password="+$logpass.val(),
                         success:function(res){
-                            if(res=='ok'){
-                                if(null){
+
+                            if(res=='fail'){
+                                $alert3.show();
+                                $alert3.text('登录信息有误，请重新输入')                          
+                            }else{
+                                  if(null){
                                     location.href='/index.html';
                                     document.cookie = 'username='+$logname.val()+';expires='+now.toUTCString()+';path=/';
                                     document.cookie = 'password='+$logpass.val()+';expires='+now.toUTCString()+';path=/';
+                                    document.cookie = 'usercar='+JSON.stringify(res[0].userCar)+';expires='+now.toUTCString()+';path=/';
                                 }else{
+                                    
                                     location.href='/index.html';
                                     document.cookie = 'username='+$logname.val()+';path=/';
                                     document.cookie = 'password='+$logpass.val()+';path=/';
-                                }                                
-                            }else{
-                                $alert3.show();
-                                $alert3.text('登录信息有误，请重新输入')
+                                    document.cookie = 'usercar='+JSON.stringify(res[0].userCar)+';path=/';
+
+                                } 
+                              
                             }
                         }
                     })

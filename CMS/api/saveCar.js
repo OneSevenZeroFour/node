@@ -20,21 +20,23 @@ function saveCar(app,mysql,bodyParse){
 
 		app.post('/saveCar',function(req,res){
 			
-				res.append("Access-Control-Allow-Origin", "*")
+				// res.append("Access-Control-Allow-Origin", "*")
+				console.log(req.body.username)
+				console.log(req.body.car)
 
-				connection.query(`SELECT * FROM user where username =  "${req.body.username}"`,function(error, results, fields) {
+				connection.query(`update user set userCar = '${req.body.car}' where username ='${req.body.username}'`,function(error, results, fields){
 						//[{},{}]
-						var goods = [];
-						
-							goods.push(results[0].userCar);
-							console.log(goods)
+						console.log('已经存入购物车')
 
 					});
+
 				res.send('现在发送存购物车数据')
 
 				
 		})
 		
+
+	
 
 
 

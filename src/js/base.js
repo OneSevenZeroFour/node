@@ -6,6 +6,10 @@
 */
 require(['config'],function(){
     require(['jquery'],function($){
+
+
+
+
 //------------------------添加到购物车--------------------------------------
         var addul = document.querySelector('.box .goodlist');
         var now = new Date();
@@ -72,6 +76,20 @@ require(['config'],function(){
                     } 
                     document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/';
                     showcar(arr_goodlist);
+
+                //save mysql
+                    var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+                    console.log(userName)
+                            $.ajax({
+                                type:'post',
+                                url:'http://localhost:12345/savecar',
+                                data:{username:userName,car:JSON.stringify(arr_goodlist)},
+                                success:function(res){
+
+                                }
+                            })
+                   
+
                 }
             }
         }
@@ -162,7 +180,19 @@ if($carList){
             })
         showcar(arr_goodlist);
         showmcar(arr_goodlist);
-        document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/'; 
+        document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/';
+        
+         var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+       
+                $.ajax({
+                    type:'post',
+                    url:'http://localhost:12345/savecar',
+                    data:{username:userName,car:JSON.stringify(arr_goodlist)},
+                    success:function(res){
+
+                    }
+                })
+                        
         }
         //减号功能
         if($(this).hasClass('btn-jian')){
@@ -180,6 +210,18 @@ if($carList){
         showcar(arr_goodlist);
         showmcar(arr_goodlist);
         document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/'; 
+        //存进购物车
+            var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+                   
+                            $.ajax({
+                                type:'post',
+                                url:'http://localhost:12345/savecar',
+                                data:{username:userName,car:JSON.stringify(arr_goodlist)},
+                                success:function(res){
+
+                                }
+                            })
+
         }
         //加号功能
         if($(this).hasClass('btn-jia')){
@@ -193,6 +235,18 @@ if($carList){
         showcar(arr_goodlist);
         showmcar(arr_goodlist);
         document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/'; 
+        //存进购物车
+            var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+                   
+                            $.ajax({
+                                type:'post',
+                                url:'http://localhost:12345/savecar',
+                                data:{username:userName,car:JSON.stringify(arr_goodlist)},
+                                success:function(res){
+
+                                }
+                            })
+
         }
     })
 
@@ -263,7 +317,21 @@ if($buycar.length>0){
             }                
             showcar(arr_goodlist);
             showmcar(arr_goodlist);
-            document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/';                          
+            document.cookie = 'carlist='+JSON.stringify(arr_goodlist)+';expires='+now.toUTCString()+';path=/'; 
+
+
+        //存进购物车
+            var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+                   
+                            $.ajax({
+                                type:'post',
+                                url:'http://localhost:12345/savecar',
+                                data:{username:userName,car:JSON.stringify(arr_goodlist)},
+                                success:function(res){
+
+                                }
+                            })
+
         }
     })
 }
