@@ -26,8 +26,12 @@ function saveCar(app,mysql,bodyParse){
 						//[{},{}]
 						var goods = [];
 						
-							goods.push(results[0].userCar);
-							console.log(goods)
+							
+							if(results[0].userCar == ''){
+								console.log(req.body.car)
+							}else{
+								goods.push(results[0].userCar);
+							}
 
 					});
 				res.send('现在发送存购物车数据')
