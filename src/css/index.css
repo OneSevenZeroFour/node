@@ -374,4 +374,4 @@
 
 #toTop > ul > li:hover i { display: none; }
 
-#toTop > ul li:hover span { display: block; color: #fff; }
+#toTop > ul li:hover span { display: block; color: #fff; width: 42px; height: 42px; margin: 5px auto; }

@@ -127,15 +127,21 @@ require(['config'],function(){
         })
         
 
-        // //绑定事件
-        // $topbtn.on('click',function(){
-        //     $('html,body').stop().animate({'scrollTop':0},'slow');
-        // })
+		//返回顶部事件
+		var totop = document.getElementById("totop");
+	    totop.onclick = function(){
+	        // 先获取滚动条滚动过的距离
+	        var scrollTop = window.scrollY;
+	        var timer = setInterval(function(){
+	            if(window.scrollY <= 0){
+	                clearInterval(timer);
+	            }
+	            scrollBy(0,-100);
+	        },20);
+	    }
 
-        //绑定事件
-//      $topbtn.on('click',function(){
-//          $('html,body').stop().animate({'scrollTop':0},'slow');
-//      })
+
+
 
 
         //抢购倒计时

@@ -78,7 +78,7 @@ require(['config'],function(){
             //生成商品列表
             var ul = document.createElement('ul');
             ul.innerHTML = sousuoval.map(function(item){
-                    
+                        
                 return `<li data-id="${item.id}" data-cate="${item.category}">
                             <a href="/html/detail.html?${item.id}"><img src="${item.imgurl}"></a>
                             <p><a href="/html/detail.html?${item.id}">${item.name}</a></p>
@@ -97,7 +97,7 @@ require(['config'],function(){
             //取消这次的搜索记录
             var now = new Date();
                 now.setDate(now.getDate()-1)
-            document.cookie = 'sousuoVal=123;expires='+now;
+            document.cookie = 'sousuoVal=123;expires='+now+';path=/';
 
         }else{
                 $.ajax({

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		<meta charset="UTF-8" />
-		<title>聊天页面</title>
-		<link rel="stylesheet" href="../css/base.css" />
+		<title>客服端口</title>
+		<link rel="stylesheet" href="/css/base.css" />
 		<style>
 			a {
 				text-decoration: none;
@@ -186,12 +185,11 @@
 				padding-left: 0;
 				/*display: none;*/
 			}
-			
 			.main_right>ul>li:hover a{
 				color:#F13521;
+				cursor: pointer;
 			}
 			.main_right>ul>li>a {
-				cursor: pointer;
 				position: relative;
 			}
 			
@@ -242,8 +240,8 @@
 				color: #fff;
 			}
 			.main_left li.activeleft {
-				margin-left: 10px;
 				float: left;
+				margin-left: 10px;
 				background-color: skyblue;
 				color: #fff;
 			}
@@ -263,11 +261,11 @@
 		<div class="box">
 			<div class="header">
 				<div id="header_logo">
-					<img src="../img/kefu.png" height="67" width="262" />
+					<img src="/img/kefu.png" height="67" width="262" />
 				</div>
 				<div id="header_right">
 					<div id="right_close">
-						<a href="http://localhost:2000">结束对话</a>
+						<a href="#">结束对话</a>
 					</div>
 					<div id="right_btns">
 						<ul>
@@ -302,41 +300,37 @@
 					</div>
 				</div>
 				<div class="main_right">
-					<div class="listtitle">请选择在线客服</div>
-<!--					<button id="select">选择客服</button>-->
+					<div class="listtitle">正在联系的客户</div>
 					<ul class="ul_1">
-						<li class="online" id="kefu_1">
-							<a><img src="../img/touxiang.png" />在线订购 <span>离线</span></a>
+						<!--<li class="online" id="kefu_1">
+							<a><img src="../img/touxiang.png" />在线订购 在线</a>
 						</li>
 						<li class="online" id="kefu_2">
-							<a><img src="../img/touxiang.png" />产品咨询 <span>离线</span></a>
+							<a><img src="../img/touxiang.png" />产品咨询 在线</a>
 						</li>
 						<li class="online" id="kefu_3">
-							<a><img src="../img/touxiang.png" />订单查询 <span>离线</span></a>
+							<a><img src="../img/touxiang.png" />订单查询 在线</a>
 						</li>
 						<li class="online" id="kefu_4">
-							<a><img src="../img/touxiang.png" />汇款通知 <span>离线</span></a>
-						</li>
+							<a><img src="../img/touxiang.png" />汇款通知 在线</a>
+						</li>-->
 					</ul>
 					<!-- <button id="btn_bottom">重新选择客服</button> -->
 				</div>
 			</div>
 		</div>
-		<script src="../lib/jquery-3.2.1.js"></script>
-		<script src="../js/common.js"></script>
-		<script src="../js/commonr.js"></script>
-		<script src="../js/socket.js"></script>
-		<script type="text/javascript">
-		
+		<script src="/js/socket.js"></script>
+		<script src="/lib/jquery-3.2.1.js"></script>
+		<script type="text/javascript">	
+			
 				//获取
+				var $list = $('.ul_1')
+				var kefuname = "在线订购";
+				
 				var msglist = document.getElementsByClassName('main_left')[0];//消息显示区域
 				var list = document.getElementById('kefu_says');//客服列表
 				var msg = document.getElementById('txtsays');//消息文本框
 				var btn = document.getElementById('main_btn');//发送按钮
-				
-
-				//发送消息-------------------------------
-				// 点击按钮发送
 				btn.onclick = function() {
 					// 获取输入的内容
 					var _msg = msg.value;
@@ -355,7 +349,7 @@
 						sendMsg(_msg);
 					}
 				}
-				//发送消息函数
+				//封装函数
 				function sendMsg(_msg) {
 					// 创建li
 					var li = document.createElement('li');
@@ -365,36 +359,10 @@
 					list.appendChild(li);
 					// 自动获得焦点
 					msg.focus();
-					//发送信息到服务端
-					socket.emit('msg',{msg:_msg,id:"id"});
-					
 					
 				}
-				//发送消息-------------------------------
 				
-				//呆会要换成点击后跟对应客户聊天的逻辑
 				
-								//获取用户名----------------------------------------
-				var username = cookieget('username');
-				//如果有用户名就是用户名,如果没有的就是游客
-				function cookieget(name){
-		            // 先获取所有cookie
-		            var cookie = document.cookie;
-		            if(cookie.length === 0){
-		                return '';
-		            }
-		            // 拆分成数组
-		            cookie = cookie.split('; ');
-		            // 遍历cookie，找到想要的cookie值
-		            var res = '';
-		            cookie.forEach(function(item){
-		                var arr = item.split('=');
-		                if(arr[0] === name){
-		                    res = arr[1];
-		                }
-		            });
-		            return  res || '游客' ;
-		        }
 				
 				
 				//socket 连接
@@ -402,17 +370,25 @@
 				//先第一次连接跟后端连接,生成id
 				
 				setTimeout(function(){
-					socket.emit('adduser',{user:username})
-					socket.emit('lookkefu',{});				
+					socket.emit('addkefu',{kefu:kefuname})
+					//然后发送请求,让服务端立即发送当前的用户列表过来
+					socket.emit('lookuser',{});				
 				},500)
 				
-				//接收客服列表
-				socket.on("showkefulist", function(data) {
+				
+				//接收用户列表列表-------------------------------------------------
+				socket.on("showuserlist", function(data) {
 					console.log(data);
+					$list.html(data.map(function(item){
+						return`
+							<li class="online">
+							<a><img src="../img/touxiang.png" />${item.name}</a>
+							</li>
+						`
+					}).join(''));
 				})
 				
-				
-				//监听消息事件
+				//接收消息
 				socket.on("getMsg", function(data) {
 					var li = document.createElement('li');
 					li.innerHTML = data;
@@ -421,9 +397,9 @@
 				})
 				
 				
-
-			
+				
 		</script>
 
 	</body>
+
 </html>

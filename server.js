@@ -51,6 +51,10 @@ goods(app,connect.connection);
 //存购物车模块
 var saveCar = require("./CMS/api/saveCar.js");
 	saveCar(app,mysql,bodyParse);
+	
+//socket服务模块
+var socket = require('./src/api/sayApi.js');
+socket();
 
 //站内搜索
 //存购物车模块
