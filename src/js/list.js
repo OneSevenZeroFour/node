@@ -190,7 +190,38 @@ require(['config'],function(){
             $pno.text(pageNo);
             $ptotal.text(length);
             $total.text(arr.total);
-        }     
+        }
+
+        //点击加入购物车
+        var qty = 1
+        $('.goodlist').on('click','.addcar',function(){
+            var shopIdx = $(this).parent().parent().data('id')
+            var userName = "" ? '': ($('.sign').find('ul li:nth-of-type(1) span').html())
+            //如果username不为空，购物车信息存进数据库
+                qty++
+            var shopcar = {
+                    shopIdx:shopIdx,
+                    qty:qty
+            }
+            console.log(qty)
+                if(userName != ''){
+                    $.ajax({
+                        type:'post',
+                        url:'http://localhost:12345/savecar',
+                        data:{username:userName,car:shopcar},
+                        success:function(res){
+
+                        }
+                    })
+                }
+        })  
+
+
+
+
+
+
+
       })
     })
 })

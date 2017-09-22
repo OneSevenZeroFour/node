@@ -144,7 +144,7 @@ function handle(app,mysql,bodyParse,multer){
 			console.log('文件大小：%s', req.files[0].size);
 			console.log('文件保存路径：%s', req.files[0].path);
 			res.send({
-				path:req.files[0].path
+				path:req.files[0].filename
 			});
 		});
 

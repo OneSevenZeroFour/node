@@ -68,12 +68,14 @@ require(['config'],function(){
                     $alert4.css({color:'#f00'});
                     $regnameok.hide();
                 }else{
+
                     $.ajax({
                         type:"get",
 //                      url:"/api/reg.php",
 						url:"http://localhost:12345/reg",
                         data:"username="+$(this).val(),
                         success: res => {
+                           
                             if(res=='fail'){
                                 $(this).css({border:'1px solid #f00'})
                                 $alert4.css({color:'#f00'})
