@@ -1,8 +1,6 @@
 function saveCar(app,mysql,bodyParse){
 	
-	var shujuku = require('./sql.js');
-	var sjMysql = mysql;
-		shujuku(sjMysql);
+
 	var connection = mysql.createConnection({
 												host: 'localhost',
 												user: 'root',

@@ -1,9 +1,7 @@
 
 function handle(app,mysql,bodyParse,multer){
 
-	var shujuku = require('./sql.js');
-	var sjMysql = mysql;
-		shujuku(sjMysql);
+
 	var connection = mysql.createConnection({
 												host: 'localhost',
 												user: 'root',

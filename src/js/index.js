@@ -5,10 +5,10 @@
 * @Last Modified time: 2017-09-21 20:27:59
 */
 require(['config'],function(){
-    require(['jquery','common','jqueryui'],function($,com,jqui){
+    require(['jquery','jqueryui'],function($,com,jqui){
         $('#head').load('html/base.html .header')
         $('#foot').load('html/base.html .foot')
-        require(['base'],function(){
+        require(['base','common'],function(){
 
         // $slidenav.show();
         // $(window).on('scroll',function(){

@@ -50,7 +50,7 @@ require(['config'],function(){
                       
                     }
             })
-            
+        //判断是不是搜索的     
         if(sousuoval != ''){
            
             console.log(sousuoval)
@@ -166,7 +166,8 @@ require(['config'],function(){
             })
         })
         
-        //---------------------品牌选择---------------------
+        }
+//---------------------品牌选择---------------------
         $ppai = $('.box-r .cata');
         $ppai.on('click','span',function(){
             console.log(33)
@@ -210,7 +211,6 @@ require(['config'],function(){
                 }) 
             }
         })
-        }
         //-----------------生成列表画面函数--------------------
         function show(res){
             var arr = JSON.parse(res);

@@ -479,7 +479,7 @@ $('.addre').on('click',function(){
                     type:'post',
                     success:function(res){
                         document.cookie = "sousuoVal="+JSON.stringify(res)+";path=/"
-                        window.location.href = "list.html"
+                        window.location.href = "http://localhost:12345/html/list.html"
                     }
                 })
         })
