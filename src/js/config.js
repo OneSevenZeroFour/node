@@ -9,6 +9,6 @@ require.config({
     shim:{
         //设置插件之间的依赖
         jqueryui:['jquery'],
-        base:['common']
+        base:['jquery']
     }
 })

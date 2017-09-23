@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-09-02 14:25:24
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-21 15:36:34
+* @Last Modified time: 2017-09-23 13:17:49
 */
 require(['config'],function(){
     require(['jquery'],function($){
@@ -94,7 +94,7 @@ require(['config'],function(){
             }
         }
 //----------------------小购物车中商品的生成-------------------------
-        var carlist = document.querySelector('.search .shopcar ul');
+        var carlist = document.querySelector('.search .shopcar .carlist');
         var str1 = document.querySelector('.shopcar .carbot .str1')
         var str2 = document.querySelector('.shopcar .carbot .str2')
         var goodtotal = document.querySelector('.shopcar .cart .goodtotal')
@@ -114,12 +114,12 @@ require(['config'],function(){
                         <div class="carprice"><p><span class="pric">${item.price}</span><span class="qty">${item.qty}</span></p><button class="del">删除</button></div>
                     </li>`
             }).join('')
-        }
-        //显示商品数量
-        str1.innerText=totalqty;
-        //显示商品总价
-        str2.innerText=totalprice;
-        goodtotal.innerText=totalqty;
+            }
+            //显示商品数量
+            str1.innerText=totalqty;
+            //显示商品总价
+            str2.innerText=totalprice;
+            goodtotal.innerText=totalqty;
         }
 //----------------------删除小购物车内的商品--------------------------
         carlist.onclick = function(e){

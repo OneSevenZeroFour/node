@@ -107,6 +107,8 @@
 
 .box .goodlist ul li:hover { background: #eee; }
 
+.box .goodlist ul li .mimg { width: 200px; height: 200px; }
+
 .box .goodlist ul li p:nth-of-type(1) { font-size: 12px; height: 40px; line-height: 20px; color: #666; }
 
 .box .goodlist ul li p:nth-of-type(1) a { color: #666; }

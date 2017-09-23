@@ -78,18 +78,18 @@ document.addEventListener('DOMContentLoaded',function(){
         }else if($(this).hasClass('editbtn')){
             var id = $(this).attr('data-id');
             window.location.href = './admin-user.html?'+id;
-             $.ajax({
-            type:"post",
-            url:"http://localhost:12345/change",
-            data:{
-              id:id
-            },
-            success:function(res){
-                console.log(res)
+          //    $.ajax({
+          //   type:"post",
+          //   url:"http://localhost:12345/change",
+          //   data:{
+          //     id:id
+          //   },
+          //   success:function(res){
+          //       console.log(res)
 
                 
-            }
-          })
+          //   }
+          // })
         }
     })
 

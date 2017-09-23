@@ -91,9 +91,9 @@ function handle(app,mysql,bodyParse,multer){
 			
 				res.append("Access-Control-Allow-Origin", "*")
 
-				connection.query(` update goods set name = "${req.body.goodname}",price = "${req.body.price}",sale = "${req.body.discount}",imgurl = "${req.body.imgurl}",imgarr = "${req.body.imgarr}",category = "${req.body.kind}" ,sqty = "${req.body.qty}",description = "${req.body.intro}" where id="${req.body.id}"`,function(error, results, fields){
+				connection.query(` update goods set name = "${req.body.goodname}",price = "${req.body.price}",sale = "${req.body.discount}",imgurl = "${req.body.imgurl}",imgarr = "${req.body.imgarr}",category = "${req.body.kind}" ,sqty = "${req.body.qty}",description = '${req.body.intro}' where id="${req.body.id}"`,function(error, results, fields){
 
-							
+							console.log(req.body.intro)
 							if(error == ''){
 								window.location.href = 'admin-table.html/select'
 							}
@@ -131,21 +131,33 @@ function handle(app,mysql,bodyParse,multer){
 			storage: storage
 		});
 
-		//单图上传
+		//大图上传
 		//app.post('/upload-single', upload.single('logo'), function(req, res, next) {
 		app.post('/upload', upload.any(), function(req, res, next) {	
 			res.append("Access-Control-Allow-Origin","*");
-			console.log(req.files)
-			console.log('文件类型：%s', req.files[0].mimetype);
-			console.log('原始文件名：%s', req.files[0].originalname);
-			console.log((req.files[0].originalname).split("."))
-			console.log('文件大小：%s', req.files[0].size);
-			console.log('文件保存路径：%s', req.files[0].path);
+			// console.log(req.files)
+			// console.log('文件类型：%s', req.files[0].mimetype);
+			// console.log('原始文件名：%s', req.files[0].originalname);
+			// console.log((req.files[0].originalname).split("."))
+			// console.log('文件大小：%s', req.files[0].size);
+			// console.log('文件保存路径：%s', req.files[0].path);
 			res.send({
 				path:req.files[0].filename
 			});
 		});
-
+		//小图上传
+		app.post('/upmload', upload.any(), function(req, res, next) {	
+			res.append("Access-Control-Allow-Origin","*");
+			console.log(req.files)
+			// console.log('文件类型：%s', req.files[0].mimetype);
+			// console.log('原始文件名：%s', req.files[0].originalname);
+			// console.log((req.files[0].originalname).split("."))
+			// console.log('文件大小：%s', req.files[0].size);
+			// console.log('文件保存路径：%s', req.files[0].path);
+			res.send({
+				path:req.files
+			});
+		});
 
 		console.log('已经启动mysql操作模块')
 

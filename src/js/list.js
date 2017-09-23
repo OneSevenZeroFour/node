@@ -240,7 +240,7 @@ require(['config'],function(){
             var ul = document.createElement('ul');
             ul.innerHTML = arr.data.map(function(item){
                 return `<li data-id="${item.id}" data-cate="${item.category}">
-                            <a href="/html/detail.html?${item.id}"><img src="${item.imgurl}"></a>
+                            <a href="/html/detail.html?${item.id}"><img class="mimg" src="${item.imgurl}"></a>
                             <p><a href="/html/detail.html?${item.id}">${item.name}</a></p>
                             <p>￥<span>${item.price}</span><span>${item.sale}</span>折<span class="sqty">${item.sqty}</span></p>
                             <div><button class="addcar">加入购物车</button><button>收藏</button></div>

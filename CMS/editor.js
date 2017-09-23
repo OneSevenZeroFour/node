@@ -13,29 +13,6 @@ document.addEventListener('DOMContentLoaded',function(){
     var id = window.location.search.slice(1);
     console.log(id)
 
-    // if(id.length>0){
-    //   $.ajax({
-    //     type:"post",
-    //     url:"http://localhost:12345/change",
-    //     data:{
-    //       id:id
-    //     },
-    //     success:function(res){
-    //         var arr=JSON.parse(res);
-    //         arr=arr.results;
-    //         arr=arr[0]
-    //         $goodname.val(arr.goodname)
-    //         $price.val(arr.price)
-    //         $discount.val(arr.discount)
-    //         $imgurl.val(arr.imgurl)
-    //         $imgarr.val(arr.imgarr)
-    //         $kind.val(arr.kind)
-    //         $qty.val(arr.qty)
-    //         $intro.val(arr.introduce)
-    //     }
-    //   })
-    // }
-
     if(id.length>0){
       $.ajax({
         type:"post",
@@ -72,6 +49,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		      var intro = $intro.val();
 		          console.log(goodname,price)
 		          console.log(id.length)
+                  console.log(intro)
 		      if(id.length>0){
 		          $.ajax({
 		          type:"post",
@@ -112,7 +90,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		      }
     })
 
-    // 图片上传
+    // 主图片上传
     $('#upload').on('click',function(){
             var formData = new FormData();
             //记得append("xxx")名字要跟后端一致
@@ -120,8 +98,8 @@ document.addEventListener('DOMContentLoaded',function(){
             //     formData.append('logo', $('#file')[0].files[i]); 
             // }
             formData.append('logo',$('#file')[0].files[0]);
-            console.log($('#file')[0].files[0])
-            console.log(formData)
+            // console.log($('#file')[0].files[0])
+            // console.log(formData)
             $.ajax({
                 url: 'http://localhost:12345/upload',
                 type: 'POST',
@@ -131,12 +109,48 @@ document.addEventListener('DOMContentLoaded',function(){
                 contentType: false,
                 success: function(data) {
                     console.log(data)
-                    $('#img').attr('src',"http://localhost:12345/uploads/"+data.path)
+                    var imgadd = "/uploads/"+data.path;
+                    $('#img').attr('src',imgadd)
+                    $imgurl.val(imgadd)
                 }
             })
         })
 
-  
+  //小图上传
+  $('#upmload').on('click',function(){
+    console.log(66)
+        var formData = new FormData();
+            //记得append("xxx")名字要跟后端一致
+            for(var i=0;i<$('#mfile')[0].files.length;i++){
+                formData.append('logo', $('#mfile')[0].files[i]);
+            }
+            // formData.append('logo',$('#file')[0].files[0]);
+            // console.log($('#file')[0].files[0])
+            // console.log(formData)
+            $.ajax({
+                url: 'http://localhost:12345/upmload',
+                type: 'POST',
+                cache: false, //不必须
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log(data)
+                    var str='';
+                    $('.img1').attr('src',"/uploads/"+data.path[0].filename);
+                    $('.img2').attr('src',"/uploads/"+data.path[1].filename);
+                    $('.img3').attr('src',"/uploads/"+data.path[2].filename);
+                    $('.img4').attr('src',"/uploads/"+data.path[3].filename);
+                    $('.img5').attr('src',"/uploads/"+data.path[4].filename);
+                    for(var i=0;i<data.path.length;i++){
+                        str+="/uploads/"+data.path[i].filename+",";
+                    }
+                    str=str.slice(0,-1);
+                    console.log(str)
+                    $imgarr.val(str);
+                }
+            })
+  })
 
 
 

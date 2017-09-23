@@ -56,6 +56,7 @@ require(['jquery'],function(){
                             </div>                           
                         </div>`
         }
+        // $('.tabt-1').html(arr.description)
     })
 require(['base'],function(){
     $imgall = $('.content .showdetail .show ul img');
