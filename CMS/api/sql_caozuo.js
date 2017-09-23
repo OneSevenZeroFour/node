@@ -159,8 +159,14 @@ function handle(app,mysql,bodyParse,multer){
 			});
 		});
 
-		console.log('已经启动mysql操作模块')
-
+		//后台数据搜索
+		app.post('/brand',function(req,res){
+			res.append("Access-Control-Allow-Origin", "*")
+			connection.query(`SELECT  * FROM  goods where category = "${req.body.brand}"`, function(error, results, fields){									
+							res.send(results)
+							});
+			console.log('你发送的是查询请求')
+		})
 }
 
 
