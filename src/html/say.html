@@ -496,6 +496,13 @@
 					
 				})
 				
+				
+				window.onbeforeunload = function(){
+					socket.emit('reuser',{user:username})
+				}
+				
+				
+				
 			
 		</script>
 

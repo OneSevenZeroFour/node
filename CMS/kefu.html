@@ -327,7 +327,10 @@
 				//获取
 				var $list = $('.ul_1');
 				var kefuname = prompt('请选择');
-				console.log(kefuname);
+				if(kefuname=="a") kefuname="在线订购";
+				if(kefuname=="b") kefuname="产品咨询";
+				if(kefuname=="c") kefuname="订单查询";
+				if(kefuname=="d") kefuname="汇款通知";
 				
 				var msglist = document.getElementsByClassName('main_left')[0];//消息显示区域
 				var list = document.getElementById('kefu_says');//客服列表
@@ -383,7 +386,7 @@
 				
 				//接收用户列表列表-------------------------------------------------
 				socket.on("showuserlist", function(data) {
-					console.log(data);
+					console.log('用户刷新');
 					$list.html(data.map(function(item){
 						return`
 							<li class="online" data-id="${item.id}" >
@@ -416,10 +419,20 @@
 				
 				
 				window.onbeforeunload = function(){
-					
 					socket.emit('rekefu',{kefu:kefuname})
 				}
 				
+				//用户离线通知
+				//客服的离线通知
+				socket.on('reuserlist',function(data){
+//					console.log(data.user)
+					$('.online').each(function(idx,item){
+						if($(item).find('a').text()==data.user){
+							$(item).remove();
+						}
+					})
+					
+				})
 				
 		</script>
 
