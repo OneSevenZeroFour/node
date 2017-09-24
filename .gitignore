@@ -1,2 +1,4 @@
-#gulp模块文件过滤
+﻿#gulp模块文件过滤
 node_modules/
+#gulp模块文件过滤 hbulder文件
+.project

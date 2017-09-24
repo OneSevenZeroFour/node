@@ -150,6 +150,7 @@
 				height: 105px;
 				line-height: 30px;
 				border: 1px solid #5ea7dc;
+				display: none;
 			}
 			
 			#txtsays {
@@ -353,6 +354,7 @@
 					if(keyCode === 13 && e.ctrlKey) {
 						var _msg = msg.value;
 						sendMsg(_msg);
+						msg.value = '';
 					}
 				}
 				//发送消息函数
@@ -366,7 +368,8 @@
 					// 自动获得焦点
 					msg.focus();
 					//发送信息到服务端
-					socket.emit('msg',{msg:_msg,id:"id"});
+					socket.emit('msg',{msg:_msg,id:talkId});
+					
 					
 					
 				}
@@ -406,11 +409,63 @@
 					socket.emit('lookkefu',{});				
 				},500)
 				
+				
+				
 				//接收客服列表
+				var kid0,kid1,kid2,kid3;//客服id
 				socket.on("showkefulist", function(data) {
-					console.log(data);
+					data.forEach(function(item){
+				
+						switch(true){
+							case (item.name=="在线订购"):
+							$('#kefu_1').find('span').css({'color':'red'}).html('在线');
+							kid0 = item.id;
+							break;
+							case (item.name=="产品咨询"):
+							$('#kefu_2').find('span').css({'color':'red'}).html('在线');
+							kid1 = item.id;
+							break;
+							case (item.name=="订单查询"):
+							$('#kefu_3').find('span').css({'color':'red'}).html('在线');
+							kid2 = item.id;
+							break;
+							case (item.name=="汇款通知"):
+							$('#kefu_4').find('span').css({'color':'red'}).html('在线');
+							kid3 = item.id;
+							break;	
+						}
+					})
 				})
 				
+				
+				//双击切换跟某个客服进行私聊
+				var $kefuList = $('.ul_1');//客服列表
+				var talkId = '';//正在通话的客服id
+				$kefuList.on("dblclick","li",function(e){
+					//清空一下正在聊天的界面
+					$("#kefu_says").html('');
+					//显示与哪个客服交流中
+					var $h6 = $('<h6></h6>').html('正在与'+$(this).text()+'交流中');
+					$('.main_left').find('h6').remove();
+					$('.main_left').prepend($h6.css({'text-align':'center'}));
+					var idx = $(this).index();
+					console.log(idx);
+					switch(idx){
+						case 0:
+						talkId = kid0;
+						break;
+						case 1:
+						talkId = kid1;
+						break;
+						case 2:
+						talkId = kid2;
+						break;
+						case 3:
+						talkId = kid3;
+						break;
+					}
+					$('#me_says').css({'display':'block'});
+				})
 				
 				//监听消息事件
 				socket.on("getMsg", function(data) {
@@ -421,7 +476,26 @@
 				})
 				
 				
-
+				//客服的离线通知
+				socket.on('rekefulist',function(data){
+							
+					switch(true){
+						case (data.kefu=="在线订购"):
+						$('#kefu_1').find('span').css({'color':''}).html('离线');
+						break;
+						case (data.kefu=="产品咨询"):
+						$('#kefu_2').find('span').css({'color':''}).html('离线');
+						break;
+						case (data.kefu=="订单查询"):
+						$('#kefu_3').find('span').css({'color':''}).html('离线');
+						break;
+						case (data.kefu=="汇款通知"):
+						$('#kefu_4').find('span').css({'color':''}).html('离线');
+						break;	
+					}
+					
+				})
+				
 			
 		</script>
 

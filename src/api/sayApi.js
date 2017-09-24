@@ -18,7 +18,7 @@
 						break;
 					}
 				}
-				if(i>=userlist){
+				if(i>=userlist.length){
 					userlist.push({
 						id: socket.id,
 						name: data.user
@@ -40,7 +40,6 @@
 		
 		//接受客服端口发送过来的信息,组成客服在线列表发送给客户
 		socket.on('addkefu', function(data) {
-			console.log(data)
 			if(kefulist[0]!=undefined){
 				for(var i=0;i<kefulist.length;i++){
 					if(kefulist[i].name == data.kefu){
@@ -48,7 +47,8 @@
 						break;
 					}
 				}
-				if(i>=kefulist){
+
+				if(i>=kefulist.length){
 					kefulist.push({
 					id: socket.id,
 					name: data.kefu
@@ -60,6 +60,7 @@
 					name: data.kefu
 					})
 			}
+			console.log(kefulist)
 			io.emit("showkefulist", kefulist)
 		});
 		//立即查看用户列表
@@ -69,11 +70,23 @@
 		
 		//查看消息
 		socket.on('msg',function(data){
-			console.log(data);
-			io.emit('getMsg',data.msg);
-			
+			console.log(data)
+			if(data.msg!=undefined && data.id!='' && data.id!=undefined){
+				io.sockets.sockets[data.id].emit("getMsg", data.msg);
+			}
 		})
 		
+		//客服离线通知
+		socket.on('rekefu',function(data){
+			for(var i=0;i<kefulist.length;i++){
+				if(kefulist[i].name == data.kefu){
+					kefulist.splice(i,1)
+				}
+				//理解在发送一次客服列表
+				io.emit("rekefulist", data)
+				console.log(kefulist)
+			}
+		})
 		
 		
 		
