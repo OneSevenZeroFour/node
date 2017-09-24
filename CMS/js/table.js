@@ -101,8 +101,50 @@ document.addEventListener('DOMContentLoaded',function(){
 
     })
 
- 
+    //品牌选择和搜索
+    $("#brand").change(function(){
+        var brand = $('#brand').find("option:selected").text();
+        console.log(brand)
+            select(brand);
+    })
+    $("#brandbtn").on('click',function(){
+        var brand = $('#brandsearch').val();
+        select(brand);
+        console.log(brand)
+    })
+    function select(brand){
+        $.ajax({
+            type:"post",
+            url:"http://localhost:12345/brand",
+            data:{
+                brand:brand
+            },
+            success:function(res){
+               var html = res.map(function(item){
+                    return `<tr>
+                              <td><input type="checkbox" /></td>
+                              <td>${item.id}</td>
+                              <td><a href="#">${item.name}</a></td>
+                              <td>${item.category}</td>
+                              <td class="am-hide-sm-only">${item.price}</td>
+                              <td class="am-hide-sm-only">${item.sale}</td>
+                            
+                              <td class="am-hide-sm-only">${item.sqty}</td>
+                              <td class="am-hide-sm-only">${item.description}</td>
 
-
-
+                              <td>
+                                <div class="am-btn-toolbar" class="allbtn">
+                                  <div class="am-btn-group am-btn-group-xs">
+                                    <button data-id=${item.id} class="editbtn" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                    <button data-id=${item.id} class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
+                                    <button data-id=${item.id} class="delbtn" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr> `
+                }).join('')
+                $('#list').html(html); 
+            }
+        })
+    } 
 })

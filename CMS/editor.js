@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded',function(){
        $kind = $('#category')
        $qty = $('#user-qty')
        $intro = $('#user-intro')
+       $mainimg = $('#img')
+       $img1 = $('.img1')
+       $img2 = $('.img2')
+       $img3 = $('.img3')
+       $img4 = $('.img4')
+       $img5 = $('.img5')
     var id = window.location.search.slice(1);
     console.log(id)
 
@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded',function(){
         success:function(res){
         	console.log(res)
         	console.log(888	)
-           
+           var arr = res[0].imgarr.split(',');
             $goodname.val(res[0].name)
             $price.val(res[0].price)
             $discount.val(res[0].sale)
@@ -32,7 +38,12 @@ document.addEventListener('DOMContentLoaded',function(){
             $kind.val(res[0].category)
             $qty.val(res[0].sqty)
             $intro.val(res[0].description)
-
+            $mainimg.attr('src',res[0].imgurl)
+            $img1.attr('src',arr[0])
+            $img2.attr('src',arr[1])
+            $img3.attr('src',arr[2])
+            $img4.attr('src',arr[3])
+            $img5.attr('src',arr[4])
             console.log(res[0].name)
         }
       })
