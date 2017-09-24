@@ -13,6 +13,8 @@ var app = express();
 //监听窗口打开服务器
 app.listen(12345);
 
+//文件模块
+var fs = require('fs');
 //上传图片multer模块
 var multer = require('multer')
 //引入自定义模块

@@ -2,14 +2,10 @@
 * @Author: Marte
 * @Date:   2017-09-02 14:25:24
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-23 13:17:49
+* @Last Modified time: 2017-09-23 17:52:06
 */
 require(['config'],function(){
     require(['jquery'],function($){
-
-
-
-
 //------------------------添加到购物车--------------------------------------
         var addul = document.querySelector('.box .goodlist');
         var now = new Date();
@@ -103,6 +99,7 @@ require(['config'],function(){
             var totalprice=0;
             var totalqty=0;
             //判断是否存在商品
+            console.log(carlist)
             carlist.innerHTML = '';
             if(arr.length>0){
             carlist.innerHTML = arr.map(function(item){

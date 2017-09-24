@@ -4,7 +4,7 @@ require(['config'],function(){
         $('#foot').load('base.html .foot');
         $login = $('.head .sign ul li a');
         //这里的require请求只是确保上面的节点已经全部加载
-        require(['common','base'],function(){      
+        require(['base'],function(){      
 //---------------侧边栏动画------------------------------------------     
         $selist = $('.selist');
         $content = $selist.find('.content');
@@ -254,17 +254,6 @@ require(['config'],function(){
             $ptotal.text(length);
             $total.text(arr.total);
         }
-
-    
-       
-
-
-
-
-
-
-
-
       })
     })
 })

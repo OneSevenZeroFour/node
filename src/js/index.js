@@ -2,13 +2,13 @@
 * @Author: liumian
 * @Date:   2017-08-31 15:03:25
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-09-21 20:27:59
+* @Last Modified time: 2017-09-23 17:56:42
 */
 require(['config'],function(){
     require(['jquery','jqueryui'],function($,com,jqui){
         $('#head').load('html/base.html .header')
         $('#foot').load('html/base.html .foot')
-        require(['base','common'],function(){
+        require(['base'],function(){
 
         // $slidenav.show();
         // $(window).on('scroll',function(){

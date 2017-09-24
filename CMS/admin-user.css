@@ -1,4 +1,4 @@
-.am-u-sm-9{position:relative}
+.am-u-sm-9{position:relative;}
 #editor{
 	position:absolute;
 	bottom:25px;
@@ -14,6 +14,35 @@
 #ed:hover{
 	color:#007FFF;
 }
+.mainimg .coverb{
+    position:relative;
+}
+.mainimg .coverb  #img{
+    border:1px solid #ccc;
+}
+.mainimg .coverb:hover .cover{
+    display:block;
+}
+.mainimg .cover{
+    position:absolute;
+    width:100px;
+    height:35px;
+    background:#efefef;
+    left:0;
+    top:40px;
+    text-align:center;
+    line-height: 35px;
+    opacity:0.6;
+    color:red;
+    display:none;
+}
+.mainimg .cover:hover{
+    cursor:pointer;
+}
 .minimg{
     margin-top:20px;
+}
+.minimg img{
+    border:1px solid #ccc;
+    margin-top:5px;
 }

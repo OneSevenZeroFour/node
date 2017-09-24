@@ -109,20 +109,24 @@
               <div class="am-g">
                 <div class="am-u-md-8">
                   <div class="mainimg">
-                    <img src="" width="100" height="100" id="img"/>
+                    <div class="coverb">
+                      <img src="" width="100" height="100" id="img"/>
+                      <span class="cover">删除</span>
+                    </div>
                     <input type="file" id="file">
-                    <p class="am-form-help" style="color:#f00; font-size:16px;">请选择要上传的主图</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs" id="upload">上载</button>
+                    <p class="am-form-help" id="dpic" style="color:#f00; font-size:16px;"> 请选择要上传的主图</p>
+                    <button type="button" class="am-btn am-btn-primary am-btn-xs" id="upload">预览</button>
                   </div>
                   <div class="minimg">
+                    <div class="cover"></div>
                     <img src="" width="80" height="80" class="img1"/>
                     <img src="" width="80" height="80" class="img2"/>
                     <img src="" width="80" height="80" class="img3"/>
                     <img src="" width="80" height="80" class="img4"/>
                     <img src="" width="80" height="80" class="img5"/>
                     <input type="file" id="mfile" multiple="multiple" >
-                    <p class="am-form-help" style="color:#f00; font-size:16px;">请选择要上传的小图</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs" id="upmload">上载</button>
+                    <p class="am-form-help" style="color:#f00; font-size:16px;" id="xpic">请选择要上传的小图</p>
+                    <button type="button" class="am-btn am-btn-primary am-btn-xs" id="upmload">预览</button>
                   </div>
                 </div>
               </div>
@@ -178,14 +182,14 @@
             <div class="am-form-group">
               <label for="user-QQ" class="am-u-sm-3 am-form-label">图片</label>
               <div class="am-u-sm-9">
-                <input type="text"  id="user-QQ" placeholder="输入图片链接">
+                <input type="text"  id="user-QQ" placeholder="请在右侧上传大图">
               </div>
             </div>
 
             <div class="am-form-group">
               <label for="user-weibo" class="am-u-sm-3 am-form-label">小图组</label>
               <div class="am-u-sm-9">
-                <input type="text" id="user-weibo" placeholder="输入小图数组">
+                <input type="text" id="user-weibo" placeholder="请在右侧上传小图组">
               </div>
             </div>
 

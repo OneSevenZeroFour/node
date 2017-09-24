@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded',function(){
             $img4.attr('src',arr[3])
             $img5.attr('src',arr[4])
             console.log(res[0].name)
+            $('#dpic').text('请选择要更换大图')
+            $('#xpic').text('请选择要更换小图')
         }
       })
     }
@@ -210,10 +212,5 @@ document.addEventListener('DOMContentLoaded',function(){
 				text.value = editor.txt.html();
 			}
 		}	
-	}
-	
-	
-			
-			
-			
+	}			
 })
