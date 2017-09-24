@@ -16,10 +16,9 @@ app.listen(12345);
 //文件模块
 var fs = require('fs');
 //上传图片multer模块
-var multer = require('multer')
+var multer = require('multer');
 //引入自定义模块
 var handle = require('./CMS/api/sql_caozuo.js');
-
 	handle(app,mysql,bodyParse,multer);
 
 // handle(app,mysql,bodyParse);
@@ -70,4 +69,4 @@ app.use(express.static('src'));
 app.use(express.static('CMS'));
 app.use(express.static('uploads'));
 
-console.log("开启服务器")
+console.log("开启服务器");

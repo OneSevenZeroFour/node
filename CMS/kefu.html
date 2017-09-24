@@ -149,6 +149,7 @@
 				height: 105px;
 				line-height: 30px;
 				border: 1px solid #5ea7dc;
+				display: none;
 			}
 			
 			#txtsays {
@@ -324,8 +325,12 @@
 		<script type="text/javascript">	
 			
 				//获取
-				var $list = $('.ul_1')
-				var kefuname = "在线订购";
+				var $list = $('.ul_1');
+				var kefuname = prompt('请选择');
+				if(kefuname=="1") kefuname="在线订购";
+				if(kefuname=="2") kefuname="产品咨询";
+				if(kefuname=="3") kefuname="订单查询";
+				if(kefuname=="4") kefuname="汇款通知";
 				
 				var msglist = document.getElementsByClassName('main_left')[0];//消息显示区域
 				var list = document.getElementById('kefu_says');//客服列表
@@ -347,6 +352,7 @@
 					if(keyCode === 13 && e.ctrlKey) {
 						var _msg = msg.value;
 						sendMsg(_msg);
+						msg.value = '';
 					}
 				}
 				//封装函数
@@ -359,7 +365,8 @@
 					list.appendChild(li);
 					// 自动获得焦点
 					msg.focus();
-					
+					//发送信息到服务器
+					socket.emit('msg',{msg:_msg,id:talkId});
 				}
 				
 				
@@ -370,6 +377,7 @@
 				//先第一次连接跟后端连接,生成id
 				
 				setTimeout(function(){
+					console.log(kefuname)
 					socket.emit('addkefu',{kefu:kefuname})
 					//然后发送请求,让服务端立即发送当前的用户列表过来
 					socket.emit('lookuser',{});				
@@ -378,14 +386,27 @@
 				
 				//接收用户列表列表-------------------------------------------------
 				socket.on("showuserlist", function(data) {
-					console.log(data);
+					console.log('用户刷新');
 					$list.html(data.map(function(item){
 						return`
-							<li class="online">
+							<li class="online" data-id="${item.id}" >
 							<a><img src="../img/touxiang.png" />${item.name}</a>
 							</li>
 						`
 					}).join(''));
+				})
+				
+				//用户列表的点击事件
+				var talkId = '';
+				$list.on('dblclick','li',function(){
+					//清空一下正在聊天的界面
+					$("#kefu_says")
+					//显示与哪个客户交流中
+					var $h6 = $('<h6></h6>').html('正在与'+$(this).text()+'交流中');
+					$('.main_left').find('h6').remove();
+					$('.main_left').prepend($h6.css({'text-align':'center'}));
+					talkId = this.dataset.id;
+					$('#me_says').css({'display':'block'});
 				})
 				
 				//接收消息
@@ -397,6 +418,21 @@
 				})
 				
 				
+				window.onbeforeunload = function(){
+					socket.emit('rekefu',{kefu:kefuname})
+				}
+				
+				//用户离线通知
+				//客服的离线通知
+				socket.on('reuserlist',function(data){
+//					console.log(data.user)
+					$('.online').each(function(idx,item){
+						if($(item).find('a').text()==data.user){
+							$(item).remove();
+						}
+					})
+					
+				})
 				
 		</script>
 
