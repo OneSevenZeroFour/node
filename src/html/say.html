@@ -415,10 +415,10 @@
 				var kid0,kid1,kid2,kid3;//客服id
 				socket.on("showkefulist", function(data) {
 					data.forEach(function(item){
-				
 						switch(true){
 							case (item.name=="在线订购"):
-							$('#kefu_1').find('span').css({'color':'red'}).html('在线');
+							$('#kefu_1').data("id",item.id).find('span').css({'color':'red'}).html('在线');
+//							console.log($('#kefu_1').data("id"))
 							kid0 = item.id;
 							break;
 							case (item.name=="产品咨询"):

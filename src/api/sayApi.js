@@ -70,7 +70,7 @@
 		
 		//查看消息
 		socket.on('msg',function(data){
-//			console.log(data)
+			console.log(data)
 			if(data.msg!=undefined && data.id!='' && data.id!=undefined){
 				io.sockets.sockets[data.id].emit("getMsg", data.msg);
 			}
